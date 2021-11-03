@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String          @id @default(cuid())
+  createdAt         DateTime        @default(now())
+  modifiedAt        DateTime        @default(now())
+  email             String          @unique
+  consultancyFirm   ConsultancyFirm @relation(fields: [consultancyFirmId], references: [id])
+  name              String
+  consultancyFirmId String
+}
+
+model ConsultancyFirm {
+  id         String     @id @default(cuid())
+  createdAt  DateTime   @default(now())
+  modifiedAt DateTime   @default(now())
+  users      User[]
+  name       String
+  slug       String     @unique
+  businesses Business[]
+}
+
+model Business {
+  id                String           @id @default(cuid())
+  createdAt         DateTime         @default(now())
+  modifiedAt        DateTime         @default(now())
+  name              String
+  slug              String           @unique
+  applications      Application[]
+  ConsultancyFirm   ConsultancyFirm? @relation(fields: [consultancyFirmId], references: [id])
+  consultancyFirmId String?
+}
+
+model Application {
+  id         String    @id @default(cuid())
+  createdAt  DateTime  @default(now())
+  modifiedAt DateTime  @default(now())
+  name       String
+  modules    Module[]
+  Business   Business? @relation(fields: [businessId], references: [id])
+  businessId String?
+}
+
+model Module {
+  id            String       @id @default(cuid())
+  createdAt     DateTime     @default(now())
+  modifiedAt    DateTime     @default(now())
+  name          String
+  Application   Application? @relation(fields: [applicationId], references: [id])
+  applicationId String?
+}

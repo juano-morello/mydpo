@@ -1,0 +1,17 @@
+query GetCurrentUser {
+  currentUser {
+    id
+    name
+    email
+    consultancyFirm {
+      id
+      name
+      slug
+      businesses {
+        id
+        name
+        slug
+      }
+    }
+  }
+}

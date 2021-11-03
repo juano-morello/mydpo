@@ -1,0 +1,15 @@
+query GetBusiness($slug: String) {
+  business(slug: $slug) {
+    id
+    name
+    slug
+    applications {
+      id
+      name
+      modules {
+        id
+        name
+      }
+    }
+  }
+}
