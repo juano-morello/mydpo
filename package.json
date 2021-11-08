@@ -28,8 +28,10 @@
     "@urql/exchange-graphcache": "^4.0.0",
     "apollo-server-micro": "^2.21.2",
     "cookie-session": "^1.4.0",
+    "cuid": "^2.1.8",
     "dotenv": "^8.2.0",
     "execa": "^5.0.0",
+    "formik": "^2.2.9",
     "graphql": "^15.5.0",
     "jimp": "^0.16.1",
     "next": "10.0.9",
@@ -45,7 +47,8 @@
     "react-hot-toast": "^1.0.2",
     "slug": "^4.0.3",
     "stripe": "^8.138.0",
-    "urql": "^2.0.1"
+    "urql": "^2.0.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.13.10",

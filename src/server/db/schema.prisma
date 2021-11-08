@@ -28,11 +28,27 @@ model ConsultancyFirm {
 }
 
 model Business {
-  id                String           @id @default(cuid())
-  createdAt         DateTime         @default(now())
-  modifiedAt        DateTime         @default(now())
-  name              String
+  id                        String           @id @default(cuid())
+  createdAt                 DateTime         @default(now())
+  modifiedAt                DateTime         @default(now())
+
+  companyName               String
+  companyAddress            String
+  companyPhone              Int
+  companyEmail              String
+
+  businessContactName       String
+  businessContactPosition   String
+  businessContactPhone      Int
+  businessContactEmail      String
+
+  technicalContactName      String
+  technicalContactPosition  String
+  technicalContactPhone     Int
+  technicalContactEmail     String
+
   slug              String           @unique
+
   applications      Application[]
   ConsultancyFirm   ConsultancyFirm? @relation(fields: [consultancyFirmId], references: [id])
   consultancyFirmId String?

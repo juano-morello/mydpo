@@ -1,7 +1,7 @@
 query GetBusiness($slug: String) {
   business(slug: $slug) {
     id
-    name
+    companyName
     slug
     applications {
       id

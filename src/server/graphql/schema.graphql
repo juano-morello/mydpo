@@ -14,9 +14,20 @@ input ApplicationWhereUniqueInput {
 
 type Business {
   applications(after: ApplicationWhereUniqueInput, before: ApplicationWhereUniqueInput, first: Int, last: Int): [Application!]!
+  businessContactEmail: String!
+  businessContactName: String!
+  businessContactPhone: Int!
+  businessContactPosition: String!
+  companyAddress: String!
+  companyEmail: String!
+  companyName: String!
+  companyPhone: Int!
   id: String!
-  name: String!
   slug: String!
+  technicalContactEmail: String!
+  technicalContactName: String!
+  technicalContactPhone: Int!
+  technicalContactPosition: String!
 }
 
 input BusinessWhereUniqueInput {
@@ -42,6 +53,7 @@ input ModuleWhereUniqueInput {
 }
 
 type Mutation {
+  addBusiness(businessContactEmail: String!, businessContactName: String!, businessContactPhone: Int!, businessContactPosition: String!, companyAddress: String!, companyEmail: String!, companyName: String!, companyPhone: Int!, technicalContactEmail: String!, technicalContactName: String!, technicalContactPhone: Int!, technicalContactPosition: String!): Business
   createConsultancyFirm(name: String!, slug: String): ConsultancyFirm
   inviteToConsultancyFirm(email: String!, projectId: String!): Boolean
   removeUserFromConsultancyFirm(consultancyFirmId: String!, userId: String!): ConsultancyFirm

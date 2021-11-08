@@ -9,7 +9,18 @@ query GetCurrentUser {
       slug
       businesses {
         id
-        name
+        companyName,
+        companyAddress,
+        companyPhone,
+        companyEmail,
+        businessContactName,
+        businessContactPosition,
+        businessContactPhone,
+        businessContactEmail,,
+        technicalContactName,
+        technicalContactPosition,
+        technicalContactPhone,
+        technicalContactEmail
         slug
       }
     }

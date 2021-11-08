@@ -1,6 +1,6 @@
 mutation CreateConsultancyFirm($name: String!) {
   createConsultancyFirm(name: $name) {
-		id
+    id
     name
     slug
   }

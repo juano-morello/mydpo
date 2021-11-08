@@ -1,0 +1,44 @@
+mutation addBusiness(
+$companyName: String!,
+$companyAddress: String!,
+$companyPhone: Int!,
+$companyEmail: String!,
+$businessContactName: String!,
+$businessContactPosition: String!,
+$businessContactPhone: Int!,
+$businessContactEmail: String!,
+$technicalContactName: String!,
+$technicalContactPosition: String!,
+$technicalContactPhone: Int!,
+$technicalContactEmail: String!
+) {
+  addBusiness(
+  companyName: $companyName,
+  companyAddress: $companyAddress,
+  companyPhone: $companyPhone,
+  companyEmail: $companyEmail,
+
+  businessContactName: $businessContactName,
+  businessContactPosition: $businessContactPosition,
+  businessContactPhone: $businessContactPhone,
+  businessContactEmail: $businessContactEmail,
+
+  technicalContactName: $technicalContactName,
+  technicalContactPosition: $technicalContactPosition,
+  technicalContactPhone: $technicalContactPhone,
+  technicalContactEmail: $technicalContactEmail,
+  ) {
+    companyName,
+    companyAddress,
+    companyPhone,
+    companyEmail,
+    businessContactName,
+    businessContactPosition,
+    businessContactPhone,
+    businessContactEmail,,
+    technicalContactName,
+    technicalContactPosition,
+    technicalContactPhone,
+    technicalContactEmail
+  }
+}
