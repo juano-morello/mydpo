@@ -24,7 +24,6 @@ const Business = objectType({
         t.model.technicalContactEmail()
 
         t.model.slug()
-        t.model.applications()
     }
 })
 

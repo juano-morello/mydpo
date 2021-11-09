@@ -3,17 +3,60 @@
 
 
 type Application {
+  applicableRegulations: [String!]!
+  applicationDRRegionStored: String!
+  applicationHostingEntity: String!
+  applicationHostingManagement: String!
+  applicationHostingType: String!
+  applicationId: String!
+  applicationLinkedTo: Application!
+  applicationName: String!
+  applicationOwner: String!
+  applicationRegionStored: String!
+  applicationType: String!
+  businessId: String!
+  comments: String!
+  connectionType: String!
+  dataRetentionReq: String!
+  description: String!
+  encryptedDataTransfer: Boolean!
+  hasAge: Boolean!
+  hasBillingHistory: Boolean!
+  hasBiometricData: Boolean!
+  hasBirthdate: Boolean!
+  hasCivilJusticeInfo: Boolean!
+  hasCriminalInfo: Boolean!
+  hasDRHosting: Boolean!
+  hasDriversLicenceNumber: Boolean!
+  hasEmailAddress: Boolean!
+  hasEthnicOrigin: Boolean!
+  hasFinancialInfo: Boolean!
+  hasGender: Boolean!
+  hasHealthInfo: Boolean!
+  hasHomeAddress: Boolean!
+  hasHouseholdInfo: Boolean!
+  hasIdNumbers: Boolean!
+  hasLocation: Boolean!
+  hasMaritalStatus: Boolean!
+  hasMedicalInfo: Boolean!
+  hasMinorInfo: Boolean!
+  hasMobileNumber: Boolean!
+  hasNameAndInitials: Boolean!
+  hasNationality: Boolean!
+  hasPhysicalCharacteristics: Boolean!
+  hasReligiousPhilosophicalPoliticalBeliefs: Boolean!
+  hasSexualBehaviour: Boolean!
+  hasSocialMedia: Boolean!
+  hasStudentInfo: Boolean!
+  hasTelephoneNumber: Boolean!
+  hasTradeUnionMembership: Boolean!
+  hasUniqueDeviceId: Boolean!
   id: String!
-  modules(after: ModuleWhereUniqueInput, before: ModuleWhereUniqueInput, first: Int, last: Int): [Module!]!
-  name: String!
-}
-
-input ApplicationWhereUniqueInput {
-  id: String
+  modules: [String!]!
+  technologyOwner: String!
 }
 
 type Business {
-  applications(after: ApplicationWhereUniqueInput, before: ApplicationWhereUniqueInput, first: Int, last: Int): [Application!]!
   businessContactEmail: String!
   businessContactName: String!
   businessContactPhone: Int!
@@ -48,11 +91,8 @@ type Module {
   name: String!
 }
 
-input ModuleWhereUniqueInput {
-  id: String
-}
-
 type Mutation {
+  addApplication(applicableRegulations: [String], applicationDRRegionStored: String!, applicationHostingEntity: String!, applicationHostingManagement: String!, applicationHostingType: String!, applicationId: String!, applicationName: String!, applicationOwner: String!, applicationRegionStored: String!, applicationType: String!, businessId: String!, comments: String!, connectionType: String!, dataRetentionReq: String!, description: String!, encryptedDataTransfer: Boolean!, hasAge: Boolean!, hasBillingHistory: Boolean!, hasBiometricData: Boolean!, hasBirthdate: Boolean!, hasCivilJusticeInfo: Boolean!, hasCriminalInfo: Boolean!, hasDRHosting: Boolean!, hasDriversLicenceNumber: Boolean!, hasEmailAddress: Boolean!, hasEthnicOrigin: Boolean!, hasFinancialInfo: Boolean!, hasGender: Boolean!, hasHealthInfo: Boolean!, hasHomeAddress: Boolean!, hasHouseholdInfo: Boolean!, hasIdNumbers: Boolean!, hasLocation: Boolean!, hasMaritalStatus: Boolean!, hasMedicalInfo: Boolean!, hasMinorInfo: Boolean!, hasMobileNumber: Boolean!, hasNameAndInitials: Boolean!, hasNationality: Boolean!, hasPhysicalCharacteristics: Boolean!, hasReligiousPhilosophicalPoliticalBeliefs: Boolean!, hasSexualBehaviour: Boolean!, hasSocialMedia: Boolean!, hasStudentInfo: Boolean!, hasTelephoneNumber: Boolean!, hasTradeUnionMembership: Boolean!, hasUniqueDeviceId: Boolean!, modules: [String], technologyOwner: String!): Application
   addBusiness(businessContactEmail: String!, businessContactName: String!, businessContactPhone: Int!, businessContactPosition: String!, companyAddress: String!, companyEmail: String!, companyName: String!, companyPhone: Int!, technicalContactEmail: String!, technicalContactName: String!, technicalContactPhone: Int!, technicalContactPosition: String!): Business
   createConsultancyFirm(name: String!, slug: String): ConsultancyFirm
   inviteToConsultancyFirm(email: String!, projectId: String!): Boolean
@@ -61,6 +101,7 @@ type Mutation {
 }
 
 type Query {
+  application(id: String): Application
   business(slug: String): Business
   consultancyFirm(id: String, slug: String): ConsultancyFirm
   currentUser: User

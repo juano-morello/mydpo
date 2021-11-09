@@ -3,13 +3,5 @@ query GetBusiness($slug: String) {
     id
     companyName
     slug
-    applications {
-      id
-      name
-      modules {
-        id
-        name
-      }
-    }
   }
 }
