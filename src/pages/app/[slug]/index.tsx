@@ -2,8 +2,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import {useGetBusinessQuery} from "../../../client/graphql/getBusiness.generated";
 import {useGetApplicationsQuery} from "../../../client/graphql/getApplications.generated";
+import {useState} from "react";
 
 function Business() {
+  const [appList, setAppList] = useState([])
   const router = useRouter();
   const { slug } = router.query;
   const [businessData] = useGetBusinessQuery({
@@ -25,13 +27,27 @@ function Business() {
   if (!businessData.data?.business || typeof slug !== "string") return <p>Not found.</p>;
 
   const {business} = businessData.data
-  console.log('APP DATA', applicationData)
+
+  const filter = (textInput: string) => {
+    if (textInput.length > 2) {
+      const filtered = applicationData.data?.applications?.filter(app => app?.applicationName.toLowerCase().includes(textInput.toLowerCase()))
+      // @ts-ignore
+      setAppList(filtered)
+    } else {
+      setAppList([])
+    }
+  }
 
   return (
     <>
       <h1>{businessData.data.business.companyName}</h1>
 
       <h2>Applications</h2>
+
+      <input type="text" onChange={(evt) => filter(evt.target.value)}/>
+      <p>Filtered apps</p>
+      {JSON.stringify(appList)}
+
       {applicationData.data?.applications?.map((application, index) => {
         return (
             <div key={index}>
