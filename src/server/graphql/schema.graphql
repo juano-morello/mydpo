@@ -99,6 +99,7 @@ type Mutation {
 
 type Query {
   application(id: String): Application
+  applications(businessId: String!): [Application]
   business(id: String): Business
   consultancyFirm(id: String, slug: String): ConsultancyFirm
   currentUser: User

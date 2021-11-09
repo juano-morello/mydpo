@@ -76,7 +76,23 @@ const queries = extendType({
                 })
             }
         })
-    }
+        t.field('applications', {
+            type: list(Application),
+            args: {
+                businessId: nonNull(stringArg())
+            },
+            // @ts-ignore
+            resolve: async (_, {businessId}, ctx) => {
+                if (!ctx.user?.id) return null
+                return await prisma.application.findMany({
+                    where: {
+                        // @ts-ignore
+                        businessId: businessId
+                    }
+                })
+            }
+        })
+    },
 })
 
 const mutations = extendType({
