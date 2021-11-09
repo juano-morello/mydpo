@@ -1,7 +1,6 @@
 import MagicLoginStrategy from "passport-magic-login";
 import { getRequestOrigin } from "../get-request-origin";
 import { sendEmail } from "../send-email";
-import prisma from "../db/prisma";
 
 if (!process.env.MAGIC_LINK_SECRET)
   throw new Error(
@@ -12,7 +11,6 @@ const magicLink = new MagicLoginStrategy({
   secret: process.env.MAGIC_LINK_SECRET,
   callbackUrl: "/api/auth/magiclink/callback",
   sendMagicLink: async (destination, href, code, req) => {
-
     const link = `${getRequestOrigin(req)}${href}`;
 
     await sendEmail({

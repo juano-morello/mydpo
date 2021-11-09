@@ -2,7 +2,6 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import {useGetCurrentUserQuery} from "../../client/graphql/getCurrentUser.generated";
 import {useState} from "react";
-import {Business} from "../../client/graphql/types.generated";
 
 export default function Dashboard() {
     const router = useRouter();
