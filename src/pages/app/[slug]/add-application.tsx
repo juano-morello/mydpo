@@ -5,18 +5,10 @@ import {Field, Form, Formik} from "formik";
 import {useMutation} from "urql";
 import {AddApplicationDocument} from "../../../client/graphql/addApplication.generated";
 import {toast} from "react-hot-toast";
-import {useGetBusinessQuery} from "../../../client/graphql/getBusiness.generated";
 
 const addApplication: React.FC = () => {
     const router = useRouter();
     const { slug } = router.query;
-    const [{data, fetching, error}] = useGetBusinessQuery({
-        variables: {
-            slug: String(slug)
-        }
-    })
-
-    console.log(data)
 
     const [, addApplication] = useMutation(AddApplicationDocument)
 
@@ -64,7 +56,7 @@ const addApplication: React.FC = () => {
                     applicationDRRegionStored: 'SA',
                     modules: [],
                     applicationType: '',
-                    businessId: data?.business?.id,
+                    businessId: '',
 
                     storedDataTypes: [],
                     connectionType: 'filetransfer',
@@ -91,7 +83,7 @@ const addApplication: React.FC = () => {
                         applicationDRRegionStored: values.applicationDRRegionStored,
                         modules: values.modules,
                         applicationType: values.applicationType,
-                        businessId: values.businessId,
+                        businessId: slug,
 
                         hasNameAndInitials: values.storedDataTypes.filter(value => value == 'hasNameAndInitials').length > 0,
                         hasIdNumbers: values.storedDataTypes.filter(value => value == 'hasIdNumbers').length > 0,

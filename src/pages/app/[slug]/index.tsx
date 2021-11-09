@@ -7,7 +7,7 @@ function Business() {
   const { slug } = router.query;
   const [{data, fetching, error}] = useGetBusinessQuery({
     variables: {
-      slug: String(slug)
+      id: String(slug)
     }
   })
 
@@ -22,8 +22,8 @@ function Business() {
   return (
     <>
       <h1>{business?.companyName}</h1>
-      <Link href={`/app/${business.slug}/settings`}>Settings</Link>
-      <Link href={`/app/${business.slug}/add-application`}>Add Application</Link>
+      <Link href={`/app/${business.id}/settings`}>Settings</Link>
+      <Link href={`/app/${business.id}/add-application`}>Add Application</Link>
     </>
   );
 }

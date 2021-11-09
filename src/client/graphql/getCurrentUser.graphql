@@ -21,7 +21,6 @@ query GetCurrentUser {
         technicalContactPosition,
         technicalContactPhone,
         technicalContactEmail
-        slug
       }
     }
   }

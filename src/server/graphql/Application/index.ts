@@ -49,7 +49,6 @@ const Application = objectType({
         t.model.hasCriminalInfo()
         t.model.hasCivilJusticeInfo()
         t.model.hasSocialMedia()
-        t.model.applicationLinkedTo()
         t.model.connectionType()
         t.model.encryptedDataTransfer()
         t.model.dataRetentionReq()
@@ -194,7 +193,7 @@ const mutations = extendType({
                         encryptedDataTransfer: args.encryptedDataTransfer,
                         dataRetentionReq: args.dataRetentionReq,
                         comments: args.comments,
-                        applicationId: args.applicationId,
+                        // applicationId: args.applicationId,
                     }
                 })
             }

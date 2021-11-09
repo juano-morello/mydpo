@@ -47,8 +47,6 @@ model Business {
   technicalContactPhone    Int
   technicalContactEmail    String
 
-  slug String @unique
-
   ConsultancyFirm   ConsultancyFirm? @relation(fields: [consultancyFirmId], references: [id])
   consultancyFirmId String?
 }
@@ -103,13 +101,13 @@ model Application {
   hasCivilJusticeInfo                       Boolean
   hasSocialMedia                            Boolean
 
-  applicationLinkedTo   Application   @relation("ApplicationToApplication", fields: [applicationId], references: [id])
+//  applicationLinkedTo   Application?   @relation("ApplicationToApplication", fields: [applicationId], references: [id])
   connectionType        String
   encryptedDataTransfer Boolean
   dataRetentionReq      String
   comments              String
-  Application           Application[] @relation("ApplicationToApplication")
-  applicationId         String
+//  Application           Application[] @relation("ApplicationToApplication")
+  applicationId         String?
 }
 
 model Module {

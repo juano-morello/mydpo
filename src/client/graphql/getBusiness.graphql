@@ -1,7 +1,6 @@
-query GetBusiness($slug: String) {
-  business(slug: $slug) {
+query GetBusiness($id: String) {
+  business(id: $id) {
     id
     companyName
-    slug
   }
 }

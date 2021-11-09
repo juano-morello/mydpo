@@ -22,8 +22,6 @@ const Business = objectType({
         t.model.technicalContactPosition()
         t.model.technicalContactPhone()
         t.model.technicalContactEmail()
-
-        t.model.slug()
     }
 })
 
@@ -33,17 +31,17 @@ const queries = extendType({
         t.field("business", {
             type: "Business",
             args: {
-                slug: stringArg(),
+                id: stringArg(),
             },
             // @ts-ignore
-            resolve: async (_, {slug}, ctx) => {
+            resolve: async (_, {id}, ctx) => {
                 if (!ctx.user?.id) return null
 
                 // @ts-ignore
                 const business = await prisma.business.findUnique({
                     where: {
                         // @ts-ignore
-                        slug: slug,
+                        id: id,
                     },
                 });
 
@@ -110,8 +108,7 @@ const mutations = extendType({
                         technicalContactPhone: args.technicalContactPhone,
                         technicalContactEmail: args.technicalContactEmail,
 
-                        consultancyFirmId: user?.consultancyFirmId,
-                        slug: cuid()
+                        consultancyFirmId: user?.consultancyFirmId
                     }
                 })
             }

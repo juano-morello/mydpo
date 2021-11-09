@@ -27,16 +27,9 @@ export default function Dashboard() {
             {data.currentUser.consultancyFirm.businesses.map((business) => (
                 <div key={business.id}>
                     <h3>{business.companyName}</h3>
-                    <Link href={`/app/${business.slug}`}>{business.companyName}</Link>
+                    <Link href={`/app/${business.id}`}>{business.companyName}</Link>
                 </div>
             ))}
-            {/*<ul>*/}
-            {/*    {data.currentUser.consultancyFirm.businesses.map((business) => (*/}
-            {/*        <li key={business.id}>*/}
-            {/*            <Link href={`/app/${business.slug}`}>{business.companyName}</Link>*/}
-            {/*        </li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
             <Link href={'/app/add-business'}>Add Business</Link>
             <Link href="/app/settings">Settings</Link>
             <Link href="/api/auth/logout">Logout</Link>
