@@ -38,7 +38,7 @@
     "next-connect": "^0.10.0",
     "nexus": "^1.0.0",
     "nexus-plugin-prisma": "^0.32.0",
-    "passport": "^0.4.1",
+    "passport": "^0.5.0",
     "passport-magic-login": "1.0.7",
     "postmark": "^2.7.3",
     "raw-body": "^2.4.1",
