@@ -53,10 +53,18 @@ $hrContactEmail: String!
     businessContactName,
     businessContactPosition,
     businessContactPhone,
-    businessContactEmail,,
+    businessContactEmail,
     technicalContactName,
     technicalContactPosition,
     technicalContactPhone,
-    technicalContactEmail
+    technicalContactEmail,
+    privacyLiaisonContactName,
+    privacyLiaisonContactPosition,
+    privacyLiaisonContactPhone,
+    privacyLiaisonContactEmail,
+    hrContactName,
+    hrContactPosition,
+    hrContactPhone,
+    hrContactEmail
   }
 }

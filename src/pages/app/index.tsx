@@ -100,11 +100,6 @@ export default function Dashboard() {
                     </Button>
                 </CardActions>
             </Card>
-
-
-            // <Box key={business.id}>
-            //     <h4>{business.companyName}</h4>
-            // </Box>
         )
     }
 
