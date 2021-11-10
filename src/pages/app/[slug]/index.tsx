@@ -10,33 +10,27 @@ function Business() {
     const [appList, setAppList] = useState([])
     const router = useRouter();
     const {slug} = router.query;
-    const [businessData] = useGetBusinessQuery({
+    const [{data, fetching, error}] = useGetBusinessQuery({
         variables: {
             id: String(slug)
         }
     })
-    const [applicationData] = useGetApplicationsQuery({
-        variables: {
-            businessId: String(slug)
-        }
-    })
 
-    if (applicationData.fetching || businessData.fetching) return <p>Loading...</p>;
-    if (businessData.error) return <p>{businessData.error.message}</p>;
-    if (applicationData.error) return <p>{applicationData.error.message}</p>;
-    if (!businessData.data?.business || typeof slug !== "string") return <p>Not found.</p>;
+    console.log('DATA', data)
 
-    const {business} = businessData.data
+    if (fetching) return <p>Loading...</p>;
+    if (error) return <p>{error.message}</p>;
+    // if (data?.business || typeof slug !== "string") return <p>Not found.</p>;
 
     // useEffect(() => {
-    //     if (applicationData.data != undefined)
+    //     if (data != undefined)
     //         // @ts-ignore
-    //         setAppList(applicationData.data)
-    // }, [applicationData])
+    //         setAppList(data.business?.applications)
+    // }, [data])
 
     const filter = (textInput: string) => {
         if (textInput.length > 2) {
-            const filtered = applicationData.data?.applications?.filter(app => app?.applicationName.toLowerCase().includes(textInput.toLowerCase()))
+            const filtered = data?.business?.applications.filter(app => app?.applicationName.toLowerCase().includes(textInput.toLowerCase()))
             // @ts-ignore
             setAppList(filtered)
         } else {
@@ -69,7 +63,7 @@ function Business() {
                     <Button
                         variant="outlined"
                         color="success"
-                        onClick={() => router.push(`/app/${business.id}/${app?.id}`)}
+                        onClick={() => router.push(`/app/${data?.business?.id}/${app?.id}`)}
                         sx={{
                             width: '350px',
                             marginTop: '10px',
@@ -111,7 +105,7 @@ function Business() {
                         >
                             <h1
                                 style={{marginLeft: '20px'}}
-                            >{business?.companyName}</h1>
+                            >{data?.business?.companyName}</h1>
                         </Box>
                         <Button
                             variant={'contained'}
@@ -149,28 +143,28 @@ function Business() {
                             <TextField
                                 disabled
                                 focused
-                                value={business?.companyName}
+                                value={data?.business?.companyName}
                                 label="Company name"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.companyAddress}
+                                value={data?.business?.companyAddress}
                                 label="Company address"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.companyPhone}
+                                value={data?.business?.companyPhone}
                                 label="Company phone"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.companyEmail}
+                                value={data?.business?.companyEmail}
                                 label="Company email"
                                 variant="standard"
                             />
@@ -202,28 +196,28 @@ function Business() {
                             <TextField
                                 disabled
                                 focused
-                                value={business?.businessContactName}
+                                value={data?.business?.businessContactName}
                                 label="Business contact name"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.businessContactPosition}
+                                value={data?.business?.businessContactPosition}
                                 label="Business contact position"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.businessContactPhone}
+                                value={data?.business?.businessContactPhone}
                                 label="Business contact phone"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.businessContactEmail}
+                                value={data?.business?.businessContactEmail}
                                 label="Business contact email"
                                 variant="standard"
                             />
@@ -247,28 +241,28 @@ function Business() {
                             <TextField
                                 disabled
                                 focused
-                                value={business?.technicalContactName}
+                                value={data?.business?.technicalContactName}
                                 label="Technical contact name"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.technicalContactPosition}
+                                value={data?.business?.technicalContactPosition}
                                 label="Technical contact position"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.technicalContactPhone}
+                                value={data?.business?.technicalContactPhone}
                                 label="Technical contact phone"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.technicalContactEmail}
+                                value={data?.business?.technicalContactEmail}
                                 label="Technical contact email"
                                 variant="standard"
                             />
@@ -292,28 +286,28 @@ function Business() {
                             <TextField
                                 disabled
                                 focused
-                                value={business?.privacyLiaisonContactName}
+                                value={data?.business?.privacyLiaisonContactName}
                                 label="Privacy Liaison contact name"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.privacyLiaisonContactPosition}
+                                value={data?.business?.privacyLiaisonContactPosition}
                                 label="Privacy Liaison contact position"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.privacyLiaisonContactPhone}
+                                value={data?.business?.privacyLiaisonContactPhone}
                                 label="Privacy Liaison contact phone"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.privacyLiaisonContactEmail}
+                                value={data?.business?.privacyLiaisonContactEmail}
                                 label="Privacy Liaison contact email"
                                 variant="standard"
                             />
@@ -337,28 +331,28 @@ function Business() {
                             <TextField
                                 disabled
                                 focused
-                                value={business?.hrContactName}
+                                value={data?.business?.hrContactName}
                                 label="Human Resources contact name"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.hrContactPosition}
+                                value={data?.business?.hrContactPosition}
                                 label="Human Resources contact position"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.hrContactPhone}
+                                value={data?.business?.hrContactPhone}
                                 label="Human Resources contact phone"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
-                                value={business?.hrContactEmail}
+                                value={data?.business?.hrContactEmail}
                                 label="Human Resources contact email"
                                 variant="standard"
                             />
@@ -413,7 +407,7 @@ function Business() {
                                         height: '44px',
                                         borderRadius: '20px'
                                     }}
-                                    onClick={() => router.push(`/app/${business.id}/add-application`)}
+                                    onClick={() => router.push(`/app/${data?.business?.id}/add-application`)}
                                 >
                                     New App
                                 </Button>
@@ -441,7 +435,7 @@ function Business() {
                         gap: 1,
                         gridTemplateColumns: 'repeat(3, 1fr)',
                     }}>
-                        {applicationData.data?.applications?.map((application) => {
+                        {data?.business?.applications?.map((application) => {
                             return (
                                 // @ts-ignore
                                 appCard(application)

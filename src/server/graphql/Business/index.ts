@@ -32,6 +32,8 @@ const Business = objectType({
         t.model.hrContactPosition()
         t.model.hrContactPhone()
         t.model.hrContactEmail()
+
+        t.model.applications()
     }
 })
 

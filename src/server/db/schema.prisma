@@ -47,18 +47,20 @@ model Business {
   technicalContactPhone    Int
   technicalContactEmail    String
 
-  privacyLiaisonContactName        String @default("")
-  privacyLiaisonContactPosition    String @default("")
-  privacyLiaisonContactPhone       Int @default(0)
-  privacyLiaisonContactEmail       String @default("")
+  privacyLiaisonContactName     String
+  privacyLiaisonContactPosition String
+  privacyLiaisonContactPhone    Int
+  privacyLiaisonContactEmail    String
 
-  hrContactName        String @default("")
-  hrContactPosition    String @default("")
-  hrContactPhone       Int @default(0)
-  hrContactEmail       String @default("")
+  hrContactName     String
+  hrContactPosition String
+  hrContactPhone    Int
+  hrContactEmail    String
 
   ConsultancyFirm   ConsultancyFirm? @relation(fields: [consultancyFirmId], references: [id])
   consultancyFirmId String?
+
+  applications Application[]
 }
 
 model Application {
@@ -111,13 +113,12 @@ model Application {
   hasCivilJusticeInfo                       Boolean
   hasSocialMedia                            Boolean
 
-//  applicationLinkedTo   Application?   @relation("ApplicationToApplication", fields: [applicationId], references: [id])
   connectionType        String
   encryptedDataTransfer Boolean
   dataRetentionReq      String
   comments              String
-//  Application           Application[] @relation("ApplicationToApplication")
   applicationId         String?
+  Business              Business @relation(fields: [businessId], references: [id])
 }
 
 model Module {

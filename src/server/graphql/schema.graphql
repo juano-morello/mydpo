@@ -55,7 +55,12 @@ type Application {
   technologyOwner: String!
 }
 
+input ApplicationWhereUniqueInput {
+  id: String
+}
+
 type Business {
+  applications(after: ApplicationWhereUniqueInput, before: ApplicationWhereUniqueInput, first: Int, last: Int): [Application!]!
   businessContactEmail: String!
   businessContactName: String!
   businessContactPhone: Int!
