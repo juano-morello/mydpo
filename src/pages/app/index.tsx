@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {useGetCurrentUserQuery} from "../../client/graphql/getCurrentUser.generated";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Layout from "../../client/components/Layout";
 import {Box, Button, Card, CardActions, CardContent, Grid, TextField, Typography} from "@mui/material";
 import {Business} from "../../client/graphql/types.generated";
@@ -10,6 +10,12 @@ export default function Dashboard() {
     const router = useRouter();
     const [{data, fetching, error}] = useGetCurrentUserQuery();
     const [businessList, setBusinessList] = useState([])
+
+    useEffect(() => {
+        if (data != undefined)
+        // @ts-ignore
+        setBusinessList(data?.currentUser?.consultancyFirm.businesses)
+    }, [data])
 
     if (fetching) return <p>Loading...</p>;
 
@@ -142,7 +148,7 @@ export default function Dashboard() {
                                 justifyContent: 'center',
                             }}
                         >
-                            <TextField label="Search" variant="standard"/>
+                            <TextField onChange={(evt) => filter(evt.target.value)} label="Search" variant="standard"/>
                         </Box>
                     </Box>
 
@@ -154,7 +160,7 @@ export default function Dashboard() {
                             marginTop: '20px',
                         }}
                     >
-                        {data.currentUser.consultancyFirm.businesses.map((business) => (
+                        {businessList.map((business) => (
                             businessCard(business)
                         ))}
                     </Box>
