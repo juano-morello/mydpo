@@ -2,6 +2,9 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import {useGetCurrentUserQuery} from "../../client/graphql/getCurrentUser.generated";
 import {useState} from "react";
+import Layout from "../../client/components/Layout";
+import {Box, Button, Card, CardActions, CardContent, Grid, TextField, Typography} from "@mui/material";
+import {Business} from "../../client/graphql/types.generated";
 
 export default function Dashboard() {
     const router = useRouter();
@@ -28,27 +31,153 @@ export default function Dashboard() {
             // @ts-ignore
             setBusinessList(filtered)
         } else {
-            setBusinessList([])
+            // @ts-ignore
+            setBusinessList(data.currentUser?.consultancyFirm.businesses)
         }
+    }
+
+    const businessCard = (business: Business) => {
+        return (
+            <Card
+            sx={{
+                width: '380px',
+                borderRadius: '10px'
+            }}
+            key={business.id}
+            >
+                <CardContent>
+                    <Typography variant="h5" component="div">
+                        {business.companyName}
+                    </Typography>
+
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        Email
+                    </Typography>
+                    <Typography variant="body2">
+                        {business.companyEmail}
+                    </Typography>
+
+                    <Box
+                        sx={{
+                            display: 'grid',
+                            gap: 1,
+                            gridTemplateColumns: 'repeat(2, 1fr)',
+                        }}
+                    >
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            Phone
+                        </Typography>
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            Location
+                        </Typography>
+                        <Typography variant="body2">
+                            {business.companyEmail}
+                        </Typography>
+                        <Typography variant="body2">
+                            {business.companyAddress}
+                        </Typography>
+                    </Box>
+                </CardContent>
+                <CardActions>
+                    <Button
+                        variant="outlined"
+                        color="success"
+                        onClick={() => router.push(`/app/${business.id}`)}
+                        sx={{
+                            width: '350px',
+                            marginTop: '10px',
+                            marginBottom: '15px',
+                            borderRadius: '20px'
+                        }}
+                    >
+                        View
+                    </Button>
+                </CardActions>
+            </Card>
+
+
+            // <Box key={business.id}>
+            //     <h4>{business.companyName}</h4>
+            // </Box>
+        )
     }
 
     return (
         <>
-            <h1>Hello {data.currentUser.name}!</h1>
-            <input type="text" onChange={(evt) => filter(evt.target.value)}/>
+            <Layout>
+                <Grid
+                sx={{marginTop: '70px'}}
+                >
+                    <Box
+                        sx={{
+                            display: 'grid',
+                            gap: 24,
+                            gridTemplateColumns: 'repeat(2, 1fr)',
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                backgroundColor: '#FFFFFF',
+                                width: '661px',
+                                height: '44px',
+                                borderRadius: '20px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <h2
+                            style={{marginLeft: '20px'}}
+                            >Companies</h2>
+                        </Box>
 
-            <p>Filtered business</p>
-            {JSON.stringify(businessList)}
+                        <Box
+                            sx={{
+                                backgroundColor: '#FFFFFF',
+                                width: '317px',
+                                height: '44px',
+                                borderRadius: '20px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <TextField label="Search" variant="standard"/>
+                        </Box>
+                    </Box>
 
-            {data.currentUser.consultancyFirm.businesses.map((business) => (
-                <div key={business.id}>
-                    <h3>{business.companyName}</h3>
-                    <Link href={`/app/${business.id}`}>{business.companyName}</Link>
-                </div>
-            ))}
-            <Link href={'/app/add-business'}>Add Business</Link>
-            <Link href="/app/settings">Settings</Link>
-            <Link href="/api/auth/logout">Logout</Link>
+                    <Box
+                        sx={{
+                            display: 'grid',
+                            gap: 1,
+                            gridTemplateColumns: 'repeat(3, 1fr)',
+                            marginTop: '20px',
+                        }}
+                    >
+                        {data.currentUser.consultancyFirm.businesses.map((business) => (
+                            businessCard(business)
+                        ))}
+                    </Box>
+
+                </Grid>
+
+
+                {/*<h1>Hello {data.currentUser.name}!</h1>*/}
+                {/*<input type="text" onChange={(evt) => filter(evt.target.value)}/>*/}
+
+                {/*<p>Filtered business</p>*/}
+                {/*{JSON.stringify(businessList)}*/}
+
+                {/*{data.currentUser.consultancyFirm.businesses.map((business) => (*/}
+                {/*    <div key={business.id}>*/}
+                {/*        <h3>{business.companyName}</h3>*/}
+                {/*        <Link href={`/app/${business.id}`}>{business.companyName}</Link>*/}
+                {/*    </div>*/}
+                {/*))}*/}
+                {/*<Link href={'/app/add-business'}>Add Business</Link>*/}
+                {/*<Link href="/app/settings">Settings</Link>*/}
+                {/*<Link href="/api/auth/logout">Logout</Link>*/}
+            </Layout>
         </>
     );
 }
