@@ -10,7 +10,7 @@ export default function Layout({children}: Props) {
         <>
             <Navbar/>
             <Container>
-                <Grid item xs={3}>
+                <Grid>
                     {children}
                 </Grid>
             </Container>
