@@ -79,6 +79,16 @@ const addBusiness: React.FC = () => {
                     technicalContactPosition: '',
                     technicalContactPhone: '',
                     technicalContactEmail: '',
+
+                    privacyLiaisonContactName: '',
+                    privacyLiaisonContactPosition: '',
+                    privacyLiaisonContactPhone: '',
+                    privacyLiaisonContactEmail: '',
+
+                    hrContactName: '',
+                    hrContactPosition: '',
+                    hrContactPhone: '',
+                    hrContactEmail: '',
                 }}
                 validationSchema={validationSchema}
                 onSubmit={async (values) => {
@@ -156,6 +166,52 @@ const addBusiness: React.FC = () => {
                             <Field name="technicalContactEmail" type="email" />
                             {errors.technicalContactEmail && touched.technicalContactEmail ? (
                                 <div>{errors.technicalContactEmail}</div>
+                            ) : null}
+                        </div>
+                        <div>
+                            <h1>privacyLiaison Contact</h1>
+                            <label>privacyLiaison contact name</label>
+                            <Field name="privacyLiaisonContactName" type="text" />
+                            {errors.privacyLiaisonContactName && touched.privacyLiaisonContactName ? (
+                                <div>{errors.privacyLiaisonContactName}</div>
+                            ) : null}
+                            <label>privacyLiaison contact position</label>
+                            <Field name="privacyLiaisonContactPosition" type="text" />
+                            {errors.privacyLiaisonContactPosition && touched.privacyLiaisonContactPosition ? (
+                                <div>{errors.privacyLiaisonContactPosition}</div>
+                            ) : null}
+                            <label>privacyLiaison contact phone</label>
+                            <Field name="privacyLiaisonContactPhone" type="number" />
+                            {errors.privacyLiaisonContactPhone && touched.privacyLiaisonContactPhone ? (
+                                <div>{errors.privacyLiaisonContactPhone}</div>
+                            ) : null}
+                            <label>privacyLiaison contact email</label>
+                            <Field name="privacyLiaisonContactEmail" type="email" />
+                            {errors.privacyLiaisonContactEmail && touched.privacyLiaisonContactEmail ? (
+                                <div>{errors.privacyLiaisonContactEmail}</div>
+                            ) : null}
+                        </div>
+                        <div>
+                            <h1>Human Resources Contact</h1>
+                            <label>hr contact name</label>
+                            <Field name="hrContactName" type="text" />
+                            {errors.hrContactName && touched.hrContactName ? (
+                                <div>{errors.hrContactName}</div>
+                            ) : null}
+                            <label>hr contact position</label>
+                            <Field name="hrContactPosition" type="text" />
+                            {errors.hrContactPosition && touched.hrContactPosition ? (
+                                <div>{errors.hrContactPosition}</div>
+                            ) : null}
+                            <label>hr contact phone</label>
+                            <Field name="hrContactPhone" type="number" />
+                            {errors.hrContactPhone && touched.hrContactPhone ? (
+                                <div>{errors.hrContactPhone}</div>
+                            ) : null}
+                            <label>hr contact email</label>
+                            <Field name="hrContactEmail" type="email" />
+                            {errors.hrContactEmail && touched.hrContactEmail ? (
+                                <div>{errors.hrContactEmail}</div>
                             ) : null}
                         </div>
                         <button >Cancel</button>

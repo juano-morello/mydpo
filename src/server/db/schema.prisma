@@ -47,6 +47,16 @@ model Business {
   technicalContactPhone    Int
   technicalContactEmail    String
 
+  privacyLiaisonContactName        String @default("")
+  privacyLiaisonContactPosition    String @default("")
+  privacyLiaisonContactPhone       Int @default(0)
+  privacyLiaisonContactEmail       String @default("")
+
+  hrContactName        String @default("")
+  hrContactPosition    String @default("")
+  hrContactPhone       Int @default(0)
+  hrContactEmail       String @default("")
+
   ConsultancyFirm   ConsultancyFirm? @relation(fields: [consultancyFirmId], references: [id])
   consultancyFirmId String?
 }

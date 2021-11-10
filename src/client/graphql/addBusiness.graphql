@@ -11,6 +11,14 @@ $technicalContactName: String!,
 $technicalContactPosition: String!,
 $technicalContactPhone: Int!,
 $technicalContactEmail: String!
+$privacyLiaisonContactName: String!,
+$privacyLiaisonContactPosition: String!,
+$privacyLiaisonContactPhone: Int!,
+$privacyLiaisonContactEmail: String!
+$hrContactName: String!,
+$hrContactPosition: String!,
+$hrContactPhone: Int!,
+$hrContactEmail: String!
 ) {
   addBusiness(
   companyName: $companyName,
@@ -27,6 +35,16 @@ $technicalContactEmail: String!
   technicalContactPosition: $technicalContactPosition,
   technicalContactPhone: $technicalContactPhone,
   technicalContactEmail: $technicalContactEmail,
+
+  privacyLiaisonContactName: $privacyLiaisonContactName,
+  privacyLiaisonContactPosition: $privacyLiaisonContactPosition,
+  privacyLiaisonContactPhone: $privacyLiaisonContactPhone,
+  privacyLiaisonContactEmail: $privacyLiaisonContactEmail,
+
+  hrContactName: $hrContactName,
+  hrContactPosition: $hrContactPosition,
+  hrContactPhone: $hrContactPhone,
+  hrContactEmail: $hrContactEmail,
   ) {
     companyName,
     companyAddress,

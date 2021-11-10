@@ -22,6 +22,16 @@ const Business = objectType({
         t.model.technicalContactPosition()
         t.model.technicalContactPhone()
         t.model.technicalContactEmail()
+        
+        t.model.privacyLiaisonContactName()
+        t.model.privacyLiaisonContactPosition()
+        t.model.privacyLiaisonContactPhone()
+        t.model.privacyLiaisonContactEmail()
+        
+        t.model.hrContactName()
+        t.model.hrContactPosition()
+        t.model.hrContactPhone()
+        t.model.hrContactEmail()
     }
 })
 
@@ -80,6 +90,16 @@ const mutations = extendType({
                 technicalContactPosition: nonNull(stringArg()),
                 technicalContactPhone: nonNull(intArg()),
                 technicalContactEmail: nonNull(stringArg()),
+
+                privacyLiaisonContactName: nonNull(stringArg()),
+                privacyLiaisonContactPosition: nonNull(stringArg()),
+                privacyLiaisonContactPhone: nonNull(intArg()),
+                privacyLiaisonContactEmail: nonNull(stringArg()),
+
+                hrContactName: nonNull(stringArg()),
+                hrContactPosition: nonNull(stringArg()),
+                hrContactPhone: nonNull(intArg()),
+                hrContactEmail: nonNull(stringArg()),
             },
             // @ts-ignore
             resolve: async (_, args, ctx) => {
@@ -107,6 +127,16 @@ const mutations = extendType({
                         technicalContactPosition: args.technicalContactPosition,
                         technicalContactPhone: args.technicalContactPhone,
                         technicalContactEmail: args.technicalContactEmail,
+
+                        privacyLiaisonContactName: args.privacyLiaisonContactName,
+                        privacyLiaisonContactPosition: args.privacyLiaisonContactPosition,
+                        privacyLiaisonContactPhone: args.privacyLiaisonContactPhone,
+                        privacyLiaisonContactEmail: args.privacyLiaisonContactEmail,
+
+                        hrContactName: args.hrContactName,
+                        hrContactPosition: args.hrContactPosition,
+                        hrContactPhone: args.hrContactPhone,
+                        hrContactEmail: args.hrContactEmail,
 
                         consultancyFirmId: user?.consultancyFirmId
                     }
