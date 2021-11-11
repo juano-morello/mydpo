@@ -1,12 +1,13 @@
 import React from "react";
-import {Field, Form, Formik} from "formik";
+import {Form, Formik, Field} from "formik";
 import * as Yup from 'yup';
 import {useMutation} from "urql";
 import {AddBusinessDocument} from "../../client/graphql/addBusiness.generated";
 import {toast} from "react-hot-toast";
 import {useRouter} from "next/router";
 import Layout from "../../client/components/Layout";
-import {Box, Button, Container, Grid, TextField} from "@mui/material";
+import {Box, Button, Grid} from "@mui/material";
+import {TextField} from "formik-mui";
 
 const addBusiness: React.FC = () => {
     const [, addBusiness] = useMutation(AddBusinessDocument)
@@ -99,54 +100,6 @@ const addBusiness: React.FC = () => {
             <Layout>
                 <Grid
                 >
-                    <Grid
-                        sx={{
-                            marginTop: '40px',
-                            marginBottom: '30px',
-                            display: 'grid',
-                            gap: 10,
-                            gridTemplateColumns: 'repeat(3, 1fr)',}}
-                    >
-                        <Box
-                            sx={{
-                                backgroundColor: '#FFFFFF',
-                                width: '661px',
-                                height: '44px',
-                                borderRadius: '20px',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                            }}
-                        >
-                            <h1
-                                style={{marginLeft: '20px'}}
-                            >New Company</h1>
-                        </Box>
-                        <Button
-                            variant={'contained'}
-                            color={'error'}
-                            sx={{
-                                width: '149px',
-                                height: '44px',
-                                borderRadius: '50px',
-                            }}
-                            onClick={() => router.push('/app')}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            variant={'contained'}
-                            color={'success'}
-                            type={'submit'}
-                            sx={{
-                                width: '149px',
-                                height: '44px',
-                                borderRadius: '50px',
-                            }}
-                        >
-                            Save
-                        </Button>
-                    </Grid>
                     <Formik
                         initialValues={{
                             companyName: '',
@@ -176,6 +129,7 @@ const addBusiness: React.FC = () => {
                         }}
                         validationSchema={validationSchema}
                         onSubmit={async (values) => {
+                            console.log(values)
                             await addBusiness(values)
                             toast.success('Business created successfully!')
                             await router.push('/app')
@@ -183,66 +137,123 @@ const addBusiness: React.FC = () => {
                     >
                         {({errors, touched}) => (
                             <Form>
-                                    <Grid
+                                <Grid
+                                    sx={{
+                                        marginTop: '40px',
+                                        marginBottom: '30px',
+                                        display: 'grid',
+                                        gap: 10,
+                                        gridTemplateColumns: 'repeat(3, 1fr)',
+                                    }}
+                                >
+                                    <Box
                                         sx={{
                                             backgroundColor: '#FFFFFF',
-                                            borderRadius: '10px',
-                                            paddingBottom: '25px',
-                                            paddingTop: '10px',
-                                            paddingLeft: '20px',
-                                            paddingRight: '20px',
+                                            width: '661px',
+                                            height: '44px',
+                                            borderRadius: '20px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
                                         }}
                                     >
-                                        <Box>
-                                            <h2>Company Data</h2>
-                                        </Box>
-                                        <Grid
-                                            sx={{marginTop: '70px',display: 'grid',
-                                                gap: 10,
-                                                gridTemplateColumns: 'repeat(2, 1fr)',}}
-                                        >
-                                            <TextField
-                                                // @ts-ignore
-                                                error={errors.companyName && touched.companyName}
-                                                name={'companyName'}
-                                                type={'text'}
-                                                label="Company name"
-                                                helperText={errors.companyName}
-                                                variant="standard"
-                                            />
-                                            <TextField
-                                                // @ts-ignore
-                                                error={errors.companyAddress && touched.companyAddress}
-                                                Address={'companyAddress'}
-                                                type={'text'}
-                                                label="Company address"
-                                                helperText={errors.companyAddress}
-                                                variant="standard"
-                                            />
-                                            <TextField
-                                                // @ts-ignore
-                                                error={errors.companyPhone && touched.companyPhone}
-                                                Phone={'companyPhone'}
-                                                type={'number'}
-                                                label="Company phone"
-                                                helperText={errors.companyPhone}
-                                                variant="standard"
-                                            />
-                                            <TextField
-                                                // @ts-ignore
-                                                error={errors.companyEmail && touched.companyEmail}
-                                                Email={'companyEmail'}
-                                                type={'email'}
-                                                label="Company email"
-                                                helperText={errors.companyEmail}
-                                                variant="standard"
-                                            />
-                                        </Grid>
-                                    </Grid>
+                                        <h1
+                                            style={{marginLeft: '20px'}}
+                                        >New Company</h1>
+                                    </Box>
+                                    <Button
+                                        variant={'contained'}
+                                        color={'error'}
+                                        sx={{
+                                            width: '149px',
+                                            height: '44px',
+                                            borderRadius: '50px',
+                                        }}
+                                        onClick={() => router.push('/app')}
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                        variant={'contained'}
+                                        color={'success'}
+                                        type={'submit'}
+                                        sx={{
+                                            width: '149px',
+                                            height: '44px',
+                                            borderRadius: '50px',
+                                        }}
+                                    >
+                                        Save
+                                    </Button>
+                                </Grid>
                                 <Grid
-                                    sx={{marginTop: '25px',display: 'grid',
+                                    sx={{
+                                        backgroundColor: '#FFFFFF',
+                                        borderRadius: '10px',
+                                        paddingBottom: '25px',
+                                        paddingTop: '10px',
+                                        paddingLeft: '20px',
+                                        paddingRight: '20px',
+                                    }}
+                                >
+                                    <Box>
+                                        <h2>Company Data</h2>
+                                    </Box>
+                                    <Grid
+                                        sx={{
+                                            marginTop: '70px', display: 'grid',
+                                            gap: 10,
+                                            gridTemplateColumns: 'repeat(2, 1fr)',
+                                        }}
+                                    >
+                                        <Field
+                                            // @ts-ignore
+                                            error={errors.companyName && touched.companyName}
+                                            component={TextField}
+                                            name={'companyName'}
+                                            type={'text'}
+                                            label="Company name"
+                                            helperText={errors.companyName}
+                                            variant="standard"
+                                        />
+                                        <Field
+                                            // @ts-ignore
+                                            error={errors.companyAddress && touched.companyAddress}
+                                            component={TextField}
+                                            name={'companyAddress'}
+                                            type={'text'}
+                                            label="Company address"
+                                            helperText={errors.companyAddress}
+                                            variant="standard"
+                                        />
+                                        <Field
+                                            // @ts-ignore
+                                            error={errors.companyPhone && touched.companyPhone}
+                                            component={TextField}
+                                            name={'companyPhone'}
+                                            type={'number'}
+                                            label="Company phone"
+                                            helperText={errors.companyPhone}
+                                            variant="standard"
+                                        />
+                                        <Field
+                                            // @ts-ignore
+                                            error={errors.companyEmail && touched.companyEmail}
+                                            component={TextField}
+                                            name={'companyEmail'}
+                                            type={'email'}
+                                            label="Company email"
+                                            helperText={errors.companyEmail}
+                                            variant="standard"
+                                        />
+                                    </Grid>
+                                </Grid>
+                                <Grid
+                                    sx={{
+                                        marginTop: '25px', display: 'grid',
                                         gap: 10,
-                                        gridTemplateColumns: 'repeat(2, 1fr)',}}
+                                        gridTemplateColumns: 'repeat(2, 1fr)',
+                                    }}
                                 >
                                     <Grid
                                         sx={{
@@ -260,36 +271,40 @@ const addBusiness: React.FC = () => {
                                         <Box>
                                             <h2>Business Contact</h2>
                                         </Box>
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.businessContactName && touched.businessContactName}
+                                            component={TextField}
                                             name={'businessContactName'}
                                             type={'text'}
                                             label="Business contact name"
                                             helperText={errors.businessContactName}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.businessContactPosition && touched.businessContactPosition}
+                                            component={TextField}
                                             name={'businessContactPosition'}
                                             type={'text'}
                                             label="Business contact position"
                                             helperText={errors.businessContactPosition}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.businessContactPhone && touched.businessContactPhone}
+                                            component={TextField}
                                             name={'businessContactPhone'}
                                             type={'number'}
                                             label="Business contact phone"
                                             helperText={errors.businessContactPhone}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.businessContactEmail && touched.businessContactEmail}
+                                            component={TextField}
                                             name={'businessContactEmail'}
                                             type={'email'}
                                             label="Business contact email"
@@ -313,36 +328,40 @@ const addBusiness: React.FC = () => {
                                         <Box>
                                             <h2>Technical Contact</h2>
                                         </Box>
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.technicalContactName && touched.technicalContactName}
+                                            component={TextField}
                                             name={'technicalContactName'}
                                             type={'text'}
                                             label="Technical contact name"
                                             helperText={errors.technicalContactName}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.technicalContactPosition && touched.technicalContactPosition}
+                                            component={TextField}
                                             name={'technicalContactPosition'}
                                             type={'text'}
                                             label="Technical contact position"
                                             helperText={errors.technicalContactPosition}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.technicalContactPhone && touched.technicalContactPhone}
+                                            component={TextField}
                                             name={'technicalContactPhone'}
                                             type={'number'}
                                             label="Technical contact phone"
                                             helperText={errors.technicalContactPhone}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.technicalContactEmail && touched.technicalContactEmail}
+                                            component={TextField}
                                             name={'technicalContactEmail'}
                                             type={'email'}
                                             label="Technical contact email"
@@ -365,37 +384,41 @@ const addBusiness: React.FC = () => {
                                     >
                                         <Box>
                                             <h2>Privacy Liaison Contact</h2>
-                                        </Box>                                        
-                                        <TextField
+                                        </Box>
+                                        <Field
                                             // @ts-ignore
                                             error={errors.privacyLiaisonContactName && touched.privacyLiaisonContactName}
+                                            component={TextField}
                                             name={'privacyLiaisonContactName'}
                                             type={'text'}
                                             label="Privacy Liaison contact name"
                                             helperText={errors.privacyLiaisonContactName}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.privacyLiaisonContactPosition && touched.privacyLiaisonContactPosition}
+                                            component={TextField}
                                             name={'privacyLiaisonContactPosition'}
                                             type={'text'}
                                             label="Privacy Liaison contact position"
                                             helperText={errors.privacyLiaisonContactPosition}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.privacyLiaisonContactPhone && touched.privacyLiaisonContactPhone}
+                                            component={TextField}
                                             name={'privacyLiaisonContactPhone'}
                                             type={'number'}
                                             label="Privacy Liaison contact phone"
                                             helperText={errors.privacyLiaisonContactPhone}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.privacyLiaisonContactEmail && touched.privacyLiaisonContactEmail}
+                                            component={TextField}
                                             name={'privacyLiaisonContactEmail'}
                                             type={'email'}
                                             label="Privacy Liaison contact email"
@@ -419,36 +442,40 @@ const addBusiness: React.FC = () => {
                                         <Box>
                                             <h2>Human Resources Contact</h2>
                                         </Box>
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.hrContactName && touched.hrContactName}
+                                            component={TextField}
                                             name={'hrContactName'}
                                             type={'text'}
                                             label="Human Resources contact name"
                                             helperText={errors.hrContactName}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.hrContactPosition && touched.hrContactPosition}
+                                            component={TextField}
                                             name={'hrContactPosition'}
                                             type={'text'}
                                             label="Human Resources contact position"
                                             helperText={errors.hrContactPosition}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.hrContactPhone && touched.hrContactPhone}
+                                            component={TextField}
                                             name={'hrContactPhone'}
                                             type={'number'}
                                             label="Human Resources contact phone"
                                             helperText={errors.hrContactPhone}
                                             variant="standard"
                                         />
-                                        <TextField
+                                        <Field
                                             // @ts-ignore
                                             error={errors.hrContactEmail && touched.hrContactEmail}
+                                            component={TextField}
                                             name={'hrContactEmail'}
                                             type={'email'}
                                             label="Human Resources contact email"
