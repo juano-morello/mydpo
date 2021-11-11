@@ -1,10 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import {useRouter} from "next/router";
-import * as Yup from "yup";
 import {Field, Form, Formik} from "formik";
 import {useMutation} from "urql";
 import {AddApplicationDocument} from "../../../client/graphql/addApplication.generated";
-import {toast} from "react-hot-toast";
 import Layout from "../../../client/components/Layout";
 import {
     Autocomplete,
@@ -23,6 +21,7 @@ import {
     Select,
     TextField
 } from "@mui/material";
+import {toast} from "react-hot-toast";
 
 const addApplication: React.FC = () => {
     const router = useRouter();
@@ -30,32 +29,58 @@ const addApplication: React.FC = () => {
 
     const [, addApplication] = useMutation(AddApplicationDocument)
 
-    const validationSchema = Yup.object().shape({
-        applicationName: Yup.string()
-            .min(2, 'Too short!')
-            .max(50, 'Too long!')
-            .required('Required!'),
-        description: Yup.string()
-            .min(2, 'Too short!')
-            .max(50, 'Too long!')
-            .required('Required!'),
-        applicationHostingEntity: Yup.string()
-            .min(2, 'Too short!')
-            .max(50, 'Too long!')
-            .required('Required!'),
-        applicationOwner: Yup.string()
-            .min(2, 'Too short!')
-            .max(50, 'Too long!')
-            .required('Required!'),
-        technologyOwner: Yup.string()
-            .min(2, 'Too short!')
-            .max(50, 'Too long!')
-            .required('Required!'),
-        comments: Yup.string()
-            .min(2, 'Too short!')
-            .max(50, 'Too long!')
-    })
+    const [appName, setAppName] = useState('')
+    const [applicableRegulations, setApplicableRegulations] = useState([])
+    const [desc, setDesc] = useState('')
+    const [modules, setModules] = useState([])
+    const [appType, setAppType] = useState('')
+    const [hostingType, setHostingType] = useState('')
+    const [hostingManagementType, setHostingManagementType] = useState('')
+    const [hostingEntity, setHostingEntity] = useState('')
+    const [appOwner, setAppOwner] = useState('')
+    const [techOwner, setTechOwner] = useState('')
+    const [hostingRegion, setHostingRegion] = useState('')
+    const [hasDRHosting, setHasDRHosting] = useState(false)
+    const [drHostingRegion, setDrHostingRegion] = useState('')
 
+    const [hasNameAndInitials, setHasNameAndInitials] = useState(false)
+    const [hasIdNumbers, setHasIdNumbers] = useState(false)
+    const [hasBirthdate, setHasBirthdate] = useState(false)
+    const [hasAge, setHasAge] = useState(false)
+    const [hasGender, setHasGender] = useState(false)
+    const [hasHomeAddress, setHasHomeAddress] = useState(false)
+    const [hasTelephoneNumber, setHasTelephoneNumber] = useState(false)
+    const [hasMobileNumber, setHasMobileNumber] = useState(false)
+    const [hasEmailAddress, setHasEmailAddress] = useState(false)
+    const [hasDriversLicenceNumber, setHasDriversLicenceNumber] = useState(false)
+    const [hasMedicalInfo, setHasMedicalInfo] = useState(false)
+    const [hasFinancialInfo, setHasFinancialInfo] = useState(false)
+    const [hasHealthInfo, setHasHealthInfo] = useState(false)
+    const [hasStudentInfo, setHasStudentInfo] = useState(false)
+    const [hasMinorInfo, setHasMinorInfo] = useState(false)
+    const [hasMaritalStatus, setHasMaritalStatus] = useState(false)
+    const [hasNationality, setHasNationality] = useState(false)
+    const [hasSexualBehaviour, setHasSexualBehaviour] = useState(false)
+    const [hasPhysicalCharacteristics, setHasPhysicalCharacteristics] = useState(false)
+    const [hasEthnicOrigin, setHasEthnicOrigin] = useState(false)
+    const [hasReligiousPhilosophicalPoliticalBeliefs, setHasReligiousPhilosophicalPoliticalBeliefs] = useState(false)
+    const [hasTradeUnionMembership, setHasTradeUnionMembership] = useState(false)
+    const [hasBiometricData, setHasBiometricData] = useState(false)
+    const [hasHouseholdInfo, setHasHouseholdInfo] = useState(false)
+    const [hasBillingHistory, setHasBillingHistory] = useState(false)
+    const [hasUniqueDeviceId, setHasUniqueDeviceId] = useState(false)
+    const [hasLocation, setHasLocation] = useState(false)
+    const [hasCriminalInfo, setHasCriminalInfo] = useState(false)
+    const [hasCivilJusticeInfo, setHasCivilJusticeInfo] = useState(false)
+    const [hasSocialMedia, setHasSocialMedia] = useState(false)
+
+    const [appLinkedTo, setAppLinkedTo] = useState('')
+    const [connectionType, setConnectionType] = useState('')
+    const [encryptedDataTransfer, setEncryptedDataTransfer] = useState(false)
+    const [retentionReqs, setRetentionReqs] = useState('')
+    const [comments, setComments] = useState('')
+
+    // @ts-ignore
     return (
         <>
             <Layout>
@@ -64,89 +89,81 @@ const addApplication: React.FC = () => {
                     <Formik
                         initialValues={{
                             applicationName: '',
-                            applicableRegulations: [],
                             description: '',
-                            applicationHostingType: 'self',
                             applicationHostingManagement: '',
                             applicationHostingEntity: '',
                             applicationOwner: '',
                             technologyOwner: '',
-                            applicationRegionStored: 'SA',
-                            hasDRHosting: false,
-                            applicationDRRegionStored: 'SA',
-                            modules: [],
                             applicationType: '',
                             businessId: '',
 
                             storedDataTypes: [],
-                            connectionType: 'filetransfer',
                             encryptedDataTransfer: '',
-                            dataRetentionReq: '1 year',
                             comments: '',
-                            applicationId: 'TEST',
                         }}
-                        validationSchema={validationSchema}
                         onSubmit={async (values) => {
                             // @ts-ignore
                             const data = {
-                                applicationName: values.applicationName,
-                                applicableRegulations: values.applicableRegulations,
-                                description: values.description,
-                                applicationHostingType: values.applicationHostingType,
-                                applicationHostingManagement: values.applicationHostingManagement,
-                                applicationHostingEntity: values.applicationHostingEntity,
-                                applicationOwner: values.applicationOwner,
-                                technologyOwner: values.technologyOwner,
-                                applicationRegionStored: values.applicationRegionStored,
+                                applicationName: appName,
+                                applicableRegulations: applicableRegulations,
+                                description: desc,
+                                applicationHostingType: hostingType,
+                                applicationHostingManagement: hostingManagementType,
+                                applicationHostingEntity: hostingEntity,
+                                applicationOwner: appOwner,
+                                technologyOwner: techOwner,
+                                applicationRegionStored: hostingRegion,
                                 // @ts-ignore
-                                hasDRHosting: JSON.parse(values.hasDRHosting),
-                                applicationDRRegionStored: values.applicationDRRegionStored,
-                                modules: values.modules,
-                                applicationType: values.applicationType,
+                                hasDRHosting: hasDRHosting,
+                                applicationDRRegionStored: drHostingRegion,
+                                modules: modules,
+                                applicationType: appType,
                                 businessId: slug,
 
-                                hasNameAndInitials: values.storedDataTypes.filter(value => value == 'hasNameAndInitials').length > 0,
-                                hasIdNumbers: values.storedDataTypes.filter(value => value == 'hasIdNumbers').length > 0,
-                                hasBirthdate: values.storedDataTypes.filter(value => value == 'hasBirthdate').length > 0,
-                                hasAge: values.storedDataTypes.filter(value => value == 'hasAge').length > 0,
-                                hasGender: values.storedDataTypes.filter(value => value == 'hasGender').length > 0,
-                                hasHomeAddress: values.storedDataTypes.filter(value => value == 'hasHomeAddress').length > 0,
-                                hasTelephoneNumber: values.storedDataTypes.filter(value => value == 'hasTelephoneNumber').length > 0,
-                                hasMobileNumber: values.storedDataTypes.filter(value => value == 'hasMobileNumber').length > 0,
-                                hasEmailAddress: values.storedDataTypes.filter(value => value == 'hasEmailAddress').length > 0,
-                                hasDriversLicenceNumber: values.storedDataTypes.filter(value => value == 'hasDriversLicenceNumber').length > 0,
-                                hasMedicalInfo: values.storedDataTypes.filter(value => value == 'hasMedicalInfo').length > 0,
-                                hasFinancialInfo: values.storedDataTypes.filter(value => value == 'hasFinancialInfo').length > 0,
-                                hasHealthInfo: values.storedDataTypes.filter(value => value == 'hasHealthInfo').length > 0,
-                                hasStudentInfo: values.storedDataTypes.filter(value => value == 'hasStudentInfo').length > 0,
-                                hasMinorInfo: values.storedDataTypes.filter(value => value == 'hasMinorInfo').length > 0,
-                                hasMaritalStatus: values.storedDataTypes.filter(value => value == 'hasMaritalStatus').length > 0,
-                                hasNationality: values.storedDataTypes.filter(value => value == 'hasNationality').length > 0,
-                                hasSexualBehaviour: values.storedDataTypes.filter(value => value == 'hasSexualBehaviour').length > 0,
-                                hasPhysicalCharacteristics: values.storedDataTypes.filter(value => value == 'hasPhysicalCharacteristics').length > 0,
-                                hasEthnicOrigin: values.storedDataTypes.filter(value => value == 'hasEthnicOrigin').length > 0,
-                                hasReligiousPhilosophicalPoliticalBeliefs: values.storedDataTypes.filter(value => value == 'hasReligiousPhilosophicalPoliticalBeliefs').length > 0,
-                                hasTradeUnionMembership: values.storedDataTypes.filter(value => value == 'hasTradeUnionMembership').length > 0,
-                                hasBiometricData: values.storedDataTypes.filter(value => value == 'hasBiometricData').length > 0,
-                                hasHouseholdInfo: values.storedDataTypes.filter(value => value == 'hasHouseholdInfo').length > 0,
-                                hasBillingHistory: values.storedDataTypes.filter(value => value == 'hasBillingHistory').length > 0,
-                                hasUniqueDeviceId: values.storedDataTypes.filter(value => value == 'hasUniqueDeviceId').length > 0,
-                                hasLocation: values.storedDataTypes.filter(value => value == 'hasLocation').length > 0,
-                                hasCriminalInfo: values.storedDataTypes.filter(value => value == 'hasCriminalInfo').length > 0,
-                                hasCivilJusticeInfo: values.storedDataTypes.filter(value => value == 'hasCivilJusticeInfo').length > 0,
-                                hasSocialMedia: values.storedDataTypes.filter(value => value == 'hasSocialMedia').length > 0,
-                                connectionType: values.connectionType,
-                                encryptedDataTransfer: JSON.parse(values.encryptedDataTransfer),
-                                dataRetentionReq: values.dataRetentionReq,
-                                comments: values.comments,
-                                applicationId: values.applicationId,
+                                hasNameAndInitials: hasNameAndInitials,
+                                hasIdNumbers: hasIdNumbers,
+                                hasBirthdate: hasBirthdate,
+                                hasAge: hasAge,
+                                hasGender: hasGender,
+                                hasHomeAddress: hasHomeAddress,
+                                hasTelephoneNumber: hasTelephoneNumber,
+                                hasMobileNumber: hasMobileNumber,
+                                hasEmailAddress: hasEmailAddress,
+                                hasDriversLicenceNumber: hasDriversLicenceNumber,
+                                hasMedicalInfo: hasMedicalInfo,
+                                hasFinancialInfo: hasFinancialInfo,
+                                hasHealthInfo: hasHealthInfo,
+                                hasStudentInfo: hasStudentInfo,
+                                hasMinorInfo: hasMinorInfo,
+                                hasMaritalStatus: hasMaritalStatus,
+                                hasNationality: hasNationality,
+                                hasSexualBehaviour: hasSexualBehaviour,
+                                hasPhysicalCharacteristics: hasPhysicalCharacteristics,
+                                hasEthnicOrigin: hasEthnicOrigin,
+                                hasReligiousPhilosophicalPoliticalBeliefs: hasReligiousPhilosophicalPoliticalBeliefs,
+                                hasTradeUnionMembership: hasTradeUnionMembership,
+                                hasBiometricData: hasBiometricData,
+                                hasHouseholdInfo: hasHouseholdInfo,
+                                hasBillingHistory: hasBillingHistory,
+                                hasUniqueDeviceId: hasUniqueDeviceId,
+                                hasLocation: hasLocation,
+                                hasCriminalInfo: hasCriminalInfo,
+                                hasCivilJusticeInfo: hasCivilJusticeInfo,
+                                hasSocialMedia: hasSocialMedia,
+                                connectionType: connectionType,
+                                encryptedDataTransfer: encryptedDataTransfer,
+                                dataRetentionReq: retentionReqs,
+                                comments: comments,
+                                applicationId: appLinkedTo,
                             }
+
                             console.log('DATA', data)
-                            // addApplication(data)
-                            //     .then(_ => {
-                            //         toast.success('Application added successfully!')
-                            //         router.push(`/app/${slug}`)
-                            //     }).catch(reason => console.log('ERROR', reason))
+
+                            addApplication(data)
+                                .then(_ => {
+                                    toast.success('Application added successfully!')
+                                    router.push(`/app/${slug}`)
+                                }).catch(reason => console.log('ERROR', reason))
 
                         }}
                     >
@@ -231,6 +248,8 @@ const addApplication: React.FC = () => {
                                                 name={'applicationName'}
                                                 type={'text'}
                                                 label="Application name"
+                                                // @ts-ignore
+                                                onChange={(evt) => setAppName(evt.target.value)}
                                                 helperText={errors.applicationName}
                                                 variant="standard"
                                             />
@@ -238,6 +257,10 @@ const addApplication: React.FC = () => {
                                                 multiple
                                                 options={['GDPR', 'CCPA', 'Nevada Privacy Act', 'HIPAA', 'Swiss Data Protection Act']}
                                                 getOptionLabel={(option) => option.toString()}
+                                                onChange={(_, value) => {
+                                                    // @ts-ignore
+                                                    setApplicableRegulations(value)
+                                                }}
                                                 renderInput={(params) => (
                                                     <Field
                                                         component={TextField}
@@ -264,6 +287,8 @@ const addApplication: React.FC = () => {
                                                 name={'description'}
                                                 type={'text'}
                                                 label="Description"
+                                                // @ts-ignore
+                                                onChange={(evt) => setDesc(evt.target.value)}
                                                 helperText={errors.description}
                                                 variant="standard"
                                             />
@@ -271,8 +296,12 @@ const addApplication: React.FC = () => {
                                             <Autocomplete
                                                 multiple
                                                 id="tags-standard"
-                                                options={[1, 2, 3]}
+                                                options={['1', '2', '3']}
                                                 getOptionLabel={(option) => option.toString()}
+                                                onChange={(_, value) => {
+                                                    // @ts-ignore
+                                                    setModules(value)
+                                                }}
                                                 renderInput={(params) => (
                                                     <Field
                                                         {...params}
@@ -294,7 +323,12 @@ const addApplication: React.FC = () => {
                                             <Box>
                                                 <FormControl component="fieldset">
                                                     <FormLabel component="legend">Service or Application</FormLabel>
-                                                    <RadioGroup row name="applicationType">
+                                                    <RadioGroup
+                                                        row
+                                                        name="applicationType"
+                                                        // @ts-ignore
+                                                        onChange={(_, value) => setAppType(value)}
+                                                    >
                                                         <FormControlLabel name={'applicationType'} value={'service'}
                                                                           control={<Radio/>} label="Service"/>
                                                         <FormControlLabel name={'applicationType'} value={'application'}
@@ -305,7 +339,12 @@ const addApplication: React.FC = () => {
                                             <Box>
                                                 <FormControl component="fieldset">
                                                     <FormLabel component="legend">Cloud or On Premise</FormLabel>
-                                                    <RadioGroup row name="applicationHostingType">
+                                                    <RadioGroup
+                                                        row
+                                                        name="applicationHostingType"
+                                                        // @ts-ignore
+                                                        onChange={(_, value) => setHostingType(value)}
+                                                    >
                                                         <FormControlLabel name={'applicationHostingType'}
                                                                           value={'cloud'}
                                                                           control={<Radio/>} label="Cloud"/>
@@ -325,7 +364,9 @@ const addApplication: React.FC = () => {
                                                         // value={applicationHostingManagement}
                                                         label="Type of Hosting"
                                                         name={'applicationHostingManagement'}
-                                                        // onChange={handleChange}
+                                                        defaultValue={''}
+                                                        // @ts-ignore
+                                                        onChange={(_, value) => setHostingManagementType(value.props.value)}
                                                     >
                                                         <MenuItem value={'self'}>Self Hosted</MenuItem>
                                                         <MenuItem value={'managed'}>Managed Hosting</MenuItem>
@@ -348,6 +389,8 @@ const addApplication: React.FC = () => {
                                                 name={'applicationHostingEntity'}
                                                 type={'text'}
                                                 label="Hosting Entity"
+                                                // @ts-ignore
+                                                onChange={(evt) => setHostingEntity(evt.target.value)}
                                                 helperText={errors.applicationHostingEntity}
                                                 variant="standard"
                                             />
@@ -357,6 +400,8 @@ const addApplication: React.FC = () => {
                                                 name={'applicationOwner'}
                                                 type={'text'}
                                                 label="Application Owner"
+                                                // @ts-ignore
+                                                onChange={(evt) => setAppOwner(evt.target.value)}
                                                 helperText={errors.applicationOwner}
                                                 variant="standard"
                                             />
@@ -366,6 +411,8 @@ const addApplication: React.FC = () => {
                                                 name={'technologyOwner'}
                                                 type={'text'}
                                                 label="Technology Owner"
+                                                // @ts-ignore
+                                                onChange={(evt) => setTechOwner(evt.target.value)}
                                                 helperText={errors.technologyOwner}
                                                 variant="standard"
                                             />
@@ -380,12 +427,13 @@ const addApplication: React.FC = () => {
                                         >
                                             <Box>
                                                 <FormControl fullWidth>
-                                                    <InputLabel>DR Region Stored</InputLabel>
+                                                    <InputLabel>Region Stored</InputLabel>
                                                     <Select
-                                                        // value={applicationHostingManagement}
                                                         label="Region Stored"
                                                         name={'applicationRegionStored'}
-                                                        // onChange={handleChange}
+                                                        defaultValue={''}
+                                                        // @ts-ignore
+                                                        onChange={(_, value) => setHostingRegion(value.props.value)}
                                                     >
                                                         <MenuItem value={'eastus'}>East US</MenuItem>
                                                         <MenuItem value={'centus'}>Central US</MenuItem>
@@ -403,36 +451,43 @@ const addApplication: React.FC = () => {
                                             <Box>
                                                 <FormControl component="fieldset">
                                                     <FormLabel component="legend">DR Hosting</FormLabel>
-                                                    <RadioGroup row name="hasDRHosting">
-                                                        <FormControlLabel name={'hasDRHosting'} value={'true'}
+                                                    <RadioGroup
+                                                        // @ts-ignore
+                                                        onChange={(_, value) => setHasDRHosting(Boolean(value))}
+                                                        row
+                                                        name="hasDRHosting">
+                                                        <FormControlLabel name={'hasDRHosting'} value={true}
                                                                           control={<Radio/>} label="Yes"/>
-                                                        <FormControlLabel name={'hasDRHosting'} value={'false'}
+                                                        <FormControlLabel name={'hasDRHosting'} value={false}
                                                                           control={<Radio/>} label="No"/>
                                                     </RadioGroup>
                                                 </FormControl>
                                             </Box>
-                                            <Box>
-                                                <FormControl fullWidth>
-                                                    <InputLabel>DR Region Stored</InputLabel>
-                                                    <Select
-                                                        // value={applicationHostingManagement}
-                                                        label="Region Stored"
-                                                        name={'applicationDRRegionStored'}
-                                                        // onChange={handleChange}
-                                                    >
-                                                        <MenuItem value={'eastus'}>East US</MenuItem>
-                                                        <MenuItem value={'centus'}>Central US</MenuItem>
-                                                        <MenuItem value={'westus'}>West US</MenuItem>
-                                                        <MenuItem value={'africa'}>Africa</MenuItem>
-                                                        <MenuItem value={'asia'}>Asia</MenuItem>
-                                                        <MenuItem value={'canada'}>Canada</MenuItem>
-                                                        <MenuItem value={'europe'}>Europe</MenuItem>
-                                                        <MenuItem value={'mideast'}>Middle East</MenuItem>
-                                                        <MenuItem value={'southam'}>South America</MenuItem>
-                                                        <MenuItem value={'govcloud'}>Government Cloud</MenuItem>
-                                                    </Select>
-                                                </FormControl>
-                                            </Box>
+                                            {hasDRHosting ? (
+                                                <Box>
+                                                    <FormControl fullWidth>
+                                                        <InputLabel>DR Region Stored</InputLabel>
+                                                        <Select
+                                                            label="Region Stored"
+                                                            name={'applicationDRRegionStored'}
+                                                            defaultValue={''}
+                                                            // @ts-ignore
+                                                            onChange={(_, value) => setDrHostingRegion(value.props.value)}
+                                                        >
+                                                            <MenuItem value={'eastus'}>East US</MenuItem>
+                                                            <MenuItem value={'centus'}>Central US</MenuItem>
+                                                            <MenuItem value={'westus'}>West US</MenuItem>
+                                                            <MenuItem value={'africa'}>Africa</MenuItem>
+                                                            <MenuItem value={'asia'}>Asia</MenuItem>
+                                                            <MenuItem value={'canada'}>Canada</MenuItem>
+                                                            <MenuItem value={'europe'}>Europe</MenuItem>
+                                                            <MenuItem value={'mideast'}>Middle East</MenuItem>
+                                                            <MenuItem value={'southam'}>South America</MenuItem>
+                                                            <MenuItem value={'govcloud'}>Government Cloud</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </Box>
+                                            ) : null}
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -458,217 +513,302 @@ const addApplication: React.FC = () => {
                                             }}
                                         >
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasNameAndInitials'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasNameAndInitials'}/>}
-                                                                  label="Names and Initials in any combination"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasNameAndInitials'}
+                                                    onChange={(_, value) => setHasNameAndInitials(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasNameAndInitials'}/>}
+                                                    label="Names and Initials in any combination"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasIdNumbers'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasIdNumbers'}/>}
-                                                                  label="Identification Numbers (e.g., Social Security Number)"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasIdNumbers'}
+                                                    onChange={(_, value) => setHasIdNumbers(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasIdNumbers'}/>}
+                                                    label="Identification Numbers (e.g., Social Security Number)"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasBirthdate'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasBirthdate'}/>}
-                                                                  label="Birthdate"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasBirthdate'}
+                                                    onChange={(_, value) => setHasBirthdate(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasBirthdate'}/>}
+                                                    label="Birthdate"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasAge'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasAge'}/>} label="Age"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasAge'}
+                                                    onChange={(_, value) => setHasAge(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasAge'}/>} label="Age"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasGender'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasGender'}/>}
-                                                                  label="Gender"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasGender'}
+                                                    onChange={(_, value) => setHasGender(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasGender'}/>}
+                                                    label="Gender"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasHomeAddress'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasHomeAddress'}/>}
-                                                                  label="Home Address"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasHomeAddress'}
+                                                    onChange={(_, value) => setHasHomeAddress(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasHomeAddress'}/>}
+                                                    label="Home Address"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasTelephoneNumber'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasTelephoneNumber'}/>}
-                                                                  label="Telephone Number"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasTelephoneNumber'}
+                                                    onChange={(_, value) => setHasTelephoneNumber(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasTelephoneNumber'}/>}
+                                                    label="Telephone Number"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasMobileNumber'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasMobileNumber'}/>}
-                                                                  label="Personal Cellular, Mobile or Wireless Number"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasMobileNumber'}
+                                                    onChange={(_, value) => setHasMobileNumber(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasMobileNumber'}/>}
+                                                    label="Personal Cellular, Mobile or Wireless Number"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasEmailAddress'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasEmailAddress'}/>}
-                                                                  label="Personal E-mail Address"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasEmailAddress'}
+                                                    onChange={(_, value) => setHasEmailAddress(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasEmailAddress'}/>}
+                                                    label="Personal E-mail Address"/>
                                             </FormGroup>
                                             <FormGroup>
                                                 <FormControlLabel name={'storedDataTypes'}
                                                                   value={'hasDriversLicenceNumber'}
+                                                                  onChange={(_, value) => setHasDriversLicenceNumber(value)}
                                                                   control={<Field component={Checkbox}
                                                                                   name={'storedDataTypes'}
                                                                                   value={'hasDriversLicenceNumber'}/>}
                                                                   label="Drivers' Licence Number"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasMedicalInfo'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasMedicalInfo'}/>}
-                                                                  label="Information on Medical or Health Conditions"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasMedicalInfo'}
+                                                    onChange={(_, value) => setHasMedicalInfo(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasMedicalInfo'}/>}
+                                                    label="Information on Medical or Health Conditions"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasFinancialInfo'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasFinancialInfo'}/>}
-                                                                  label="Financial Information (credit cards, billing info, account info)"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasFinancialInfo'}
+                                                    onChange={(_, value) => setHasFinancialInfo(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasFinancialInfo'}/>}
+                                                    label="Financial Information (credit cards, billing info, account info)"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasHealthInfo'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasHealthInfo'}/>}
-                                                                  label="Health Information"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasHealthInfo'}
+                                                    onChange={(_, value) => setHasHealthInfo(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasHealthInfo'}/>}
+                                                    label="Health Information"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasStudentInfo'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasStudentInfo'}/>}
-                                                                  label="Student Information"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasStudentInfo'}
+                                                    onChange={(_, value) => setHasStudentInfo(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasStudentInfo'}/>}
+                                                    label="Student Information"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasMinorInfo'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasMinorInfo'}/>}
-                                                                  label="Minor/Youth Information"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasMinorInfo'}
+                                                    onChange={(_, value) => setHasMinorInfo(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasMinorInfo'}/>}
+                                                    label="Minor/Youth Information"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasMaritalStatus'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasMaritalStatus'}/>}
-                                                                  label="Marital Status"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasMaritalStatus'}
+                                                    onChange={(_, value) => setHasMaritalStatus(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasMaritalStatus'}/>}
+                                                    label="Marital Status"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasNationality'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasNationality'}/>}
-                                                                  label="Nationality"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasNationality'}
+                                                    onChange={(_, value) => setHasNationality(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasNationality'}/>}
+                                                    label="Nationality"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasSexualBehaviour'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasSexualBehaviour'}/>}
-                                                                  label="Sexual Behaviour or Sexual Preference"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasSexualBehaviour'}
+                                                    onChange={(_, value) => setHasSexualBehaviour(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasSexualBehaviour'}/>}
+                                                    label="Sexual Behaviour or Sexual Preference"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'}
-                                                                  value={'hasPhysicalCharacteristics'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasPhysicalCharacteristics'}/>}
-                                                                  label="Physical Characteristics"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasPhysicalCharacteristics'}
+                                                    onChange={(_, value) => setHasPhysicalCharacteristics(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasPhysicalCharacteristics'}/>}
+                                                    label="Physical Characteristics"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasEthnicOrigin'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasEthnicOrigin'}/>}
-                                                                  label="Racial or Ethnic Origin"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasEthnicOrigin'}
+                                                    onChange={(_, value) => setHasEthnicOrigin(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasEthnicOrigin'}/>}
+                                                    label="Racial or Ethnic Origin"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'}
-                                                                  value={'hasReligiousPhilosophicalPoliticalBeliefs'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasReligiousPhilosophicalPoliticalBeliefs'}/>}
-                                                                  label="Religious, Philosophical or Political Beliefs"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasReligiousPhilosophicalPoliticalBeliefs'}
+                                                    onChange={(_, value) => setHasReligiousPhilosophicalPoliticalBeliefs(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasReligiousPhilosophicalPoliticalBeliefs'}/>}
+                                                    label="Religious, Philosophical or Political Beliefs"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'}
-                                                                  value={'hasTradeUnionMembership'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasTradeUnionMembership'}/>}
-                                                                  label="Trade Union Membership"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasTradeUnionMembership'}
+                                                    onChange={(_, value) => setHasTradeUnionMembership(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasTradeUnionMembership'}/>}
+                                                    label="Trade Union Membership"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasBiometricData'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasBiometricData'}/>}
-                                                                  label="Biometric Data"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasBiometricData'}
+                                                    onChange={(_, value) => setHasBiometricData(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasBiometricData'}/>}
+                                                    label="Biometric Data"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasHouseholdInfo'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasHouseholdInfo'}/>}
-                                                                  label="Household Information"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasHouseholdInfo'}
+                                                    onChange={(_, value) => setHasHouseholdInfo(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasHouseholdInfo'}/>}
+                                                    label="Household Information"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasBillingHistory'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasBillingHistory'}/>}
-                                                                  label="Consumer Purchase or Billing History"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasBillingHistory'}
+                                                    onChange={(_, value) => setHasBillingHistory(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasBillingHistory'}/>}
+                                                    label="Consumer Purchase or Billing History"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasUniqueDeviceId'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasUniqueDeviceId'}/>}
-                                                                  label="Unique Device Identifiers (IP/MAC addresses)"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasUniqueDeviceId'}
+                                                    onChange={(_, value) => setHasUniqueDeviceId(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasUniqueDeviceId'}/>}
+                                                    label="Unique Device Identifiers (IP/MAC addresses)"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasLocation'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasLocation'}/>}
-                                                                  label="Location (e.g., GPS)"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasLocation'}
+                                                    onChange={(_, value) => setHasLocation(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasLocation'}/>}
+                                                    label="Location (e.g., GPS)"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasCriminalInfo'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasCriminalInfo'}/>}
-                                                                  label="Criminal Information"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasCriminalInfo'}
+                                                    onChange={(_, value) => setHasCriminalInfo(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasCriminalInfo'}/>}
+                                                    label="Criminal Information"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasCivilJusticeInfo'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasCivilJusticeInfo'}/>}
-                                                                  label="Civil Justice Information"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasCivilJusticeInfo'}
+                                                    onChange={(_, value) => setHasCivilJusticeInfo(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasCivilJusticeInfo'}/>}
+                                                    label="Civil Justice Information"/>
                                             </FormGroup>
                                             <FormGroup>
-                                                <FormControlLabel name={'storedDataTypes'} value={'hasSocialMedia'}
-                                                                  control={<Field component={Checkbox}
-                                                                                  name={'storedDataTypes'}
-                                                                                  value={'hasSocialMedia'}/>}
-                                                                  label="Social Media"/>
+                                                <FormControlLabel
+                                                    name={'storedDataTypes'}
+                                                    value={'hasSocialMedia'}
+                                                    onChange={(_, value) => setHasSocialMedia(value)}
+                                                    control={<Field component={Checkbox}
+                                                                    name={'storedDataTypes'}
+                                                                    value={'hasSocialMedia'}/>}
+                                                    label="Social Media"/>
                                             </FormGroup>
                                         </Grid>
 
@@ -685,10 +825,11 @@ const addApplication: React.FC = () => {
                                                 <FormControl fullWidth>
                                                     <InputLabel>Application is linked to</InputLabel>
                                                     <Select
-                                                        // value={applicationHostingManagement}
                                                         label="Application is linked to"
                                                         name={'applicationId'}
-                                                        // onChange={handleChange}
+                                                        defaultValue={''}
+                                                        // @ts-ignore
+                                                        onChange={(_, value) => setAppLinkedTo(value.props.value)}
                                                     >
                                                         <MenuItem value={'testerosId'}>Testeros</MenuItem>
                                                         <MenuItem value={'slackId'}>Slack</MenuItem>
@@ -699,23 +840,31 @@ const addApplication: React.FC = () => {
                                                 <FormControl fullWidth>
                                                     <InputLabel>Type of connection</InputLabel>
                                                     <Select
-                                                        // value={applicationHostingManagement}
                                                         label="Type of connection"
                                                         name={'connectionType'}
-                                                        // onChange={handleChange}
+                                                        defaultValue={''}
+                                                        // @ts-ignore
+                                                        onChange={(_, value) => setConnectionType(value.props.value)}
                                                     >
                                                         <MenuItem value={'filetransfer'}>File Transfer</MenuItem>
                                                         <MenuItem value={'api'}>API</MenuItem>
+                                                        <MenuItem value={'batch'}>Batch</MenuItem>
+                                                        <MenuItem value={'manual'}>Manual</MenuItem>
                                                     </Select>
                                                 </FormControl>
                                             </Box>
                                             <Box>
                                                 <FormControl component="fieldset">
                                                     <FormLabel component="legend">Data transfer encrypted</FormLabel>
-                                                    <RadioGroup row name="encryptedDataTransfer">
-                                                        <FormControlLabel name={'encryptedDataTransfer'} value={'true'}
+                                                    <RadioGroup
+                                                        row
+                                                        name="encryptedDataTransfer"
+                                                        // @ts-ignore
+                                                        onChange={(_, value) => setEncryptedDataTransfer(Boolean(value))}
+                                                    >
+                                                        <FormControlLabel name={'encryptedDataTransfer'} value={true}
                                                                           control={<Radio/>} label="Yes"/>
-                                                        <FormControlLabel name={'encryptedDataTransfer'} value={'false'}
+                                                        <FormControlLabel name={'encryptedDataTransfer'} value={false}
                                                                           control={<Radio/>} label="No"/>
                                                     </RadioGroup>
                                                 </FormControl>
@@ -734,10 +883,11 @@ const addApplication: React.FC = () => {
                                                 <FormControl fullWidth>
                                                     <InputLabel>Data Retention requirements</InputLabel>
                                                     <Select
-                                                        // value={applicationHostingManagement}
                                                         label="Data Retention requirements"
                                                         name={'dataRetentionReq'}
-                                                        // onChange={handleChange}
+                                                        defaultValue={''}
+                                                        // @ts-ignore
+                                                        onChange={(_, value) => setRetentionReqs(value.props.value)}
                                                     >
                                                         <MenuItem value={'1 year'}>1 Year</MenuItem>
                                                         <MenuItem value={'3 years'}>3 Years</MenuItem>
