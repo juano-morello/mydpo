@@ -74,10 +74,10 @@ export default function Dashboard() {
                             Phone
                         </Typography>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            Location
+                            Address
                         </Typography>
                         <Typography variant="body2">
-                            {business.companyEmail}
+                            {business.companyPhone}
                         </Typography>
                         <Typography variant="body2">
                             {business.companyAddress}

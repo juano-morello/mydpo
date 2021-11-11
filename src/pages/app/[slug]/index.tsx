@@ -59,7 +59,7 @@ function Business() {
                             width: '350px',
                             marginTop: '10px',
                             marginBottom: '15px',
-                            borderRadius: '20px'
+                            borderRadius: '20px',
                         }}
                     >
                         View
@@ -177,7 +177,6 @@ function Business() {
                                 paddingLeft: '20px',
                                 paddingRight: '20px',
                                 display: 'grid',
-                                gap: 10,
                                 gridTemplateColumns: 'repeat(1, 1fr)'
                             }}
                         >
@@ -188,29 +187,41 @@ function Business() {
                                 disabled
                                 focused
                                 value={data?.business?.businessContactName}
-                                label="Business contact name"
+                                label="Name"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.businessContactPosition}
-                                label="Business contact position"
+                                label="Position"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.businessContactPhone}
-                                label="Business contact phone"
+                                label="Phone"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.businessContactEmail}
-                                label="Business contact email"
+                                label="Email"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                         </Grid>
                         <Grid
@@ -222,7 +233,6 @@ function Business() {
                                 paddingLeft: '20px',
                                 paddingRight: '20px',
                                 display: 'grid',
-                                gap: 10,
                                 gridTemplateColumns: 'repeat(1, 1fr)'
                             }}
                         >
@@ -233,29 +243,41 @@ function Business() {
                                 disabled
                                 focused
                                 value={data?.business?.technicalContactName}
-                                label="Technical contact name"
+                                label="Name"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.technicalContactPosition}
-                                label="Technical contact position"
+                                label="Position"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.technicalContactPhone}
-                                label="Technical contact phone"
+                                label="Phone"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.technicalContactEmail}
-                                label="Technical contact email"
+                                label="Email"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                         </Grid>
                         <Grid
@@ -267,7 +289,6 @@ function Business() {
                                 paddingLeft: '20px',
                                 paddingRight: '20px',
                                 display: 'grid',
-                                gap: 10,
                                 gridTemplateColumns: 'repeat(1, 1fr)'
                             }}
                         >
@@ -278,29 +299,41 @@ function Business() {
                                 disabled
                                 focused
                                 value={data?.business?.privacyLiaisonContactName}
-                                label="Privacy Liaison contact name"
+                                label="Name"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.privacyLiaisonContactPosition}
-                                label="Privacy Liaison contact position"
+                                label="Position"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.privacyLiaisonContactPhone}
-                                label="Privacy Liaison contact phone"
+                                label="Phone"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.privacyLiaisonContactEmail}
-                                label="Privacy Liaison contact email"
+                                label="Email"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                         </Grid>
                         <Grid
@@ -312,7 +345,6 @@ function Business() {
                                 paddingLeft: '20px',
                                 paddingRight: '20px',
                                 display: 'grid',
-                                gap: 10,
                                 gridTemplateColumns: 'repeat(1, 1fr)'
                             }}
                         >
@@ -323,29 +355,41 @@ function Business() {
                                 disabled
                                 focused
                                 value={data?.business?.hrContactName}
-                                label="Human Resources contact name"
+                                label="Name"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.hrContactPosition}
-                                label="Human Resources contact position"
+                                label="Position"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.hrContactPhone}
-                                label="Human Resources contact phone"
+                                label="Phone"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.hrContactEmail}
-                                label="Human Resources contact email"
+                                label="Email"
                                 variant="standard"
+                                sx={{
+                                    marginBottom: '20px'
+                                }}
                             />
                         </Grid>
                     </Grid>
