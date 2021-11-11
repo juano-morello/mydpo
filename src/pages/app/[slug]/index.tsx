@@ -1,13 +1,11 @@
 import {useRouter} from "next/router";
 import {useGetBusinessQuery} from "../../../client/graphql/getBusiness.generated";
-import {useGetApplicationsQuery} from "../../../client/graphql/getApplications.generated";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Box, Button, Card, CardActions, CardContent, Grid, TextField, Typography} from "@mui/material";
 import Layout from "../../../client/components/Layout";
 import {Application} from "../../../client/graphql/types.generated";
 
 function Business() {
-    const [appList, setAppList] = useState([])
     const router = useRouter();
     const {slug} = router.query;
     const [{data, fetching, error}] = useGetBusinessQuery({
@@ -15,18 +13,11 @@ function Business() {
             id: String(slug)
         }
     })
-
-    console.log('DATA', data)
+    const [appList, setAppList] = useState([])
 
     if (fetching) return <p>Loading...</p>;
     if (error) return <p>{error.message}</p>;
     // if (data?.business || typeof slug !== "string") return <p>Not found.</p>;
-
-    // useEffect(() => {
-    //     if (data != undefined)
-    //         // @ts-ignore
-    //         setAppList(data.business?.applications)
-    // }, [data])
 
     const filter = (textInput: string) => {
         if (textInput.length > 2) {
@@ -35,7 +26,7 @@ function Business() {
             setAppList(filtered)
         } else {
             // @ts-ignore
-            setAppList(applicationData.data?.applications)
+            setAppList(data?.business?.applications)
         }
     }
 
@@ -435,35 +426,22 @@ function Business() {
                         gap: 1,
                         gridTemplateColumns: 'repeat(3, 1fr)',
                     }}>
-                        {data?.business?.applications?.map((application) => {
+                        {
+                            appList.length < 1 ? data?.business?.applications?.map((application) => {
                             return (
                                 // @ts-ignore
                                 appCard(application)
                             )
-                        })}
+                        }) : appList.map((application) => {
+                                return (
+                                    // @ts-ignore
+                                    appCard(application)
+                                )
+                            })
+                        }
                     </Grid>
                 </Grid>
             </Layout>
-
-
-            {/*<h1>{businessData.data.business.companyName}</h1>*/}
-
-            {/*<h2>Applications</h2>*/}
-
-            {/*<input type="text" onChange={(evt) => filter(evt.target.value)}/>*/}
-            {/*<p>Filtered apps</p>*/}
-            {/*{JSON.stringify(appList)}*/}
-
-            {/*{applicationData.data?.applications?.map((application, index) => {*/}
-            {/*  return (*/}
-            {/*      <div key={index}>*/}
-            {/*        <h3>{application?.applicationName}</h3>*/}
-            {/*        <Link href={`/app/${business.id}/${application?.id}`}>View app</Link>*/}
-            {/*      </div>*/}
-            {/*  )*/}
-            {/*})}*/}
-
-            {/*<Link href={`/app/${business.id}/add-application`}>Add Application</Link>*/}
         </>
     );
 }
