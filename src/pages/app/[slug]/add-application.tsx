@@ -163,11 +163,9 @@ const addApplication: React.FC = () => {
                                 applicationId: appLinkedTo,
                             }
 
-                            console.log('DATA', data)
-
                             addApplication(data)
                                 .then(_ => {
-                                    toast.success('Application added successfully!')
+                                    toast.success('App added successfully!')
                                     router.push(`/app/${slug}`)
                                 }).catch(reason => console.log('ERROR', reason))
 
@@ -919,6 +917,8 @@ const addApplication: React.FC = () => {
                                                     type={'text'}
                                                     label="Comments (optional)"
                                                     variant="standard"
+                                                    // @ts-ignore
+                                                    onChange={(evt) => setComments(evt.target.value)}
                                                 />
                                             </Box>
                                         </Grid>
