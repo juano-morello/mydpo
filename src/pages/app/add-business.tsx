@@ -250,7 +250,7 @@ const addBusiness: React.FC = () => {
                                 </Grid>
                                 <Grid
                                     sx={{
-                                        marginTop: '25px', display: 'grid',
+                                        marginTop: '80px', display: 'grid',
                                         gap: 10,
                                         gridTemplateColumns: 'repeat(2, 1fr)',
                                     }}

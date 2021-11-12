@@ -1,6 +1,7 @@
 import {useRouter} from "next/router";
 import {useState} from "react";
 import {Box, Button, Grid, TextField} from "@mui/material";
+import Link from "next/link";
 
 /**
  * Used on the Login and Sign Up screens to handle authentication. Can be shared between those as Passport.js doesn't differentiate between logging in and signing up.
@@ -66,7 +67,7 @@ export default function AuthenticationForm() {
                     >
                         Sign in
                     </Button>
-                    <Box sx={{ textAlign: 'center', marginTop: '150px'}}>Privacy policy & Terms and conditions</Box>
+                    <Box sx={{ textAlign: 'center', marginTop: '150px'}}><Link href="https://www.privateers.io/privacy-policy/">Privacy policy</Link> & <Link href="https://www.privateers.io/tou/">Terms of Service</Link></Box>
                 </Grid>
             </Grid>
         </form>
