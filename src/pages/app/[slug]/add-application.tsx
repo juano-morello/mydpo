@@ -22,12 +22,18 @@ import {
     TextField
 } from "@mui/material";
 import {toast} from "react-hot-toast";
+import {useGetBusinessQuery} from "../../../client/graphql/getBusiness.generated";
 
 const addApplication: React.FC = () => {
     const router = useRouter();
     const {slug} = router.query;
 
     const [, addApplication] = useMutation(AddApplicationDocument)
+    const [{data, fetching, error}] = useGetBusinessQuery({
+        variables: {
+            id: String(slug)
+        }
+    })
 
     const [appName, setAppName] = useState('')
     const [applicableRegulations, setApplicableRegulations] = useState([])
@@ -203,7 +209,7 @@ const addApplication: React.FC = () => {
                                                 height: '44px',
                                                 borderRadius: '50px',
                                             }}
-                                            onClick={() => router.push('/app')}
+                                            onClick={() => router.push(`/app/${data?.business?.id}`)}
                                         >
                                             Cancel
                                         </Button>
@@ -831,8 +837,11 @@ const addApplication: React.FC = () => {
                                                         // @ts-ignore
                                                         onChange={(_, value) => setAppLinkedTo(value.props.value)}
                                                     >
-                                                        <MenuItem value={'testerosId'}>Testeros</MenuItem>
-                                                        <MenuItem value={'slackId'}>Slack</MenuItem>
+                                                        {data?.business?.applications.map(app => {
+                                                            return (
+                                                                <MenuItem value={app.id}>{app.applicationName}</MenuItem>
+                                                            )
+                                                        })}
                                                     </Select>
                                                 </FormControl>
                                             </Box>
