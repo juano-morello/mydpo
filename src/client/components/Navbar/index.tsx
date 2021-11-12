@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from 'next/image'
 import {useGetCurrentUserQuery} from "../../graphql/getCurrentUser.generated";
 import {Box, Button, Container, Grid} from "@mui/material";
 import {useRouter} from "next/router";
@@ -23,10 +24,15 @@ function Navbar() {
                 }}
             >
                 <Box>
-                    <Link href={isAuthenticated ? `/app` : `/`}>MyDPO</Link>
+                    <Image src={'/navbarLogo.png'}
+                           width={'76.38px'}
+                           height={'70px'}
+                           onClick={() => {isAuthenticated ? router.push('/app') : router.push('/')}} />
                 </Box>
 
-                <Box>
+                <Box
+                    sx={{marginTop: '30px'}}
+                >
                     <Button
                         variant="contained"
                         sx={{
@@ -36,14 +42,19 @@ function Navbar() {
                             borderRadius: '50px',
                             fontSize: '13px',
                             fontWeight: 500,
+                            marginBottom: '35px',
+                            marginRight: '20px'
                         }}
                         onClick={() => router.push('/app/add-business')}
                     >
                         new company
                     </Button>
 
-
-                    {isAuthenticated && <Link href="/api/auth/logout">Logout</Link>}
+                    <Image src={'/logout.png'}
+                           width={'44px'}
+                           height={'44px'}
+                           onClick={() => {router.push('/api/auth/logout')}} />
+                    {/*{isAuthenticated && <Link href="/api/auth/logout">Logout</Link>}*/}
                 </Box>
             </Container>
         </Grid>
