@@ -426,7 +426,10 @@ function Business() {
                                 justifyContent: 'center',
                             }}>
                             <TextField
-                                onChange={(evt) => filter(evt.target.value)} label="Search" variant="standard"
+                                onChange={(evt) => filter(evt.target.value)}
+                                label="Search"
+                                variant="standard"
+                                sx={{marginLeft: '20px', marginRight: '20px'}}
                             />
                         </Box>
                         <Box
@@ -442,7 +445,8 @@ function Business() {
                                     sx={{
                                         width: '148px',
                                         height: '44px',
-                                        borderRadius: '20px'
+                                        borderRadius: '20px',
+                                        backgroundColor: '#F6931E'
                                     }}
                                     onClick={() => router.push(`/app/${data?.business?.id}/add-application`)}
                                 >
@@ -455,7 +459,8 @@ function Business() {
                                     sx={{
                                         width: '148px',
                                         height: '44px',
-                                        borderRadius: '20px'
+                                        borderRadius: '20px',
+                                        backgroundColor: '#F6931E'
                                     }}
                                     onClick={() => alert('Coming soon!')}
                                 >

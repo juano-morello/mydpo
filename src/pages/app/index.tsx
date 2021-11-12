@@ -47,26 +47,27 @@ export default function Dashboard() {
             <Card
             sx={{
                 width: '380px',
-                borderRadius: '10px'
+                borderRadius: '10px',
+                paddingLeft: '10px',
             }}
             key={business.id}
             >
                 <CardContent>
-                    <Typography variant="h5" component="div">
+                    <Typography variant="h5" component="div" sx={{marginBottom: '10px'}}>
                         {business.companyName}
                     </Typography>
 
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                         Email
                     </Typography>
-                    <Typography variant="body2">
+                    <Typography variant="body2" sx={{marginBottom: '10px'}}>
                         {business.companyEmail}
                     </Typography>
 
                     <Box
                         sx={{
                             display: 'grid',
-                            gap: 1,
+                            gap: 0,
                             gridTemplateColumns: 'repeat(2, 1fr)',
                         }}
                     >
@@ -143,7 +144,12 @@ export default function Dashboard() {
                                 justifyContent: 'center',
                             }}
                         >
-                            <TextField onChange={(evt) => filter(evt.target.value)} label="Search" variant="standard"/>
+                            <TextField
+                                onChange={(evt) => filter(evt.target.value)}
+                                label="Search"
+                                variant="standard"
+                                sx={{marginLeft: '20px', marginRight: '20px'}}
+                            />
                         </Box>
                     </Box>
 
