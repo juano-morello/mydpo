@@ -13,7 +13,7 @@ function Business() {
             id: String(slug)
         }
     })
-    const [appList, setAppList] = useState([])
+    const [appList, setAppList] = useState()
 
     if (fetching) return <p>Loading...</p>;
     if (error) return <p>{error.message}</p>;
@@ -21,7 +21,8 @@ function Business() {
 
     const filter = (textInput: string) => {
         if (textInput.length > 2) {
-            const filtered = data?.business?.applications.filter(app => app?.applicationName.toLowerCase().includes(textInput.toLowerCase()))
+            const filtered = data?.business?.applications.filter(app => app?.applicationName.toLowerCase().includes(textInput.toLowerCase().trim()))
+            console.log(filtered)
             // @ts-ignore
             setAppList(filtered)
         } else {
@@ -69,6 +70,7 @@ function Business() {
         )
     }
 
+    // @ts-ignore
     return (
         <>
             <Layout>
@@ -471,11 +473,12 @@ function Business() {
                         gridTemplateColumns: 'repeat(3, 1fr)',
                     }}>
                         {
-                            appList.length < 1 ? data?.business?.applications?.map((application) => {
+                            appList == undefined ? data?.business?.applications?.map((application) => {
                             return (
                                 // @ts-ignore
                                 appCard(application)
                             )
+                                // @ts-ignore
                         }) : appList.map((application) => {
                                 return (
                                     // @ts-ignore

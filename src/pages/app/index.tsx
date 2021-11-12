@@ -159,25 +159,7 @@ export default function Dashboard() {
                             businessCard(business)
                         ))}
                     </Box>
-
                 </Grid>
-
-
-                {/*<h1>Hello {data.currentUser.name}!</h1>*/}
-                {/*<input type="text" onChange={(evt) => filter(evt.target.value)}/>*/}
-
-                {/*<p>Filtered business</p>*/}
-                {/*{JSON.stringify(businessList)}*/}
-
-                {/*{data.currentUser.consultancyFirm.businesses.map((business) => (*/}
-                {/*    <div key={business.id}>*/}
-                {/*        <h3>{business.companyName}</h3>*/}
-                {/*        <Link href={`/app/${business.id}`}>{business.companyName}</Link>*/}
-                {/*    </div>*/}
-                {/*))}*/}
-                {/*<Link href={'/app/add-business'}>Add Business</Link>*/}
-                {/*<Link href="/app/settings">Settings</Link>*/}
-                {/*<Link href="/api/auth/logout">Logout</Link>*/}
             </Layout>
         </>
     );
