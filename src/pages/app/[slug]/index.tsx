@@ -137,28 +137,28 @@ function Business() {
                                 disabled
                                 focused
                                 value={data?.business?.companyName}
-                                label="Company name"
+                                label="Name"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.companyAddress}
-                                label="Company address"
+                                label="Cddress"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.companyPhone}
-                                label="Company phone"
+                                label="Phone"
                                 variant="standard"
                             />
                             <TextField
                                 disabled
                                 focused
                                 value={data?.business?.companyEmail}
-                                label="Company email"
+                                label="Email"
                                 variant="standard"
                             />
                         </Grid>

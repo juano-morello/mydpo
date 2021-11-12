@@ -5,9 +5,9 @@ export default function Footer() {
     <p>
       © {new Date().getFullYear()}
       {" · "}
-      <Link href="/privacy">Privacy policy</Link>
+      <Link href="https://www.privateers.io/privacy-policy/">Privacy policy</Link>
       {" · "}
-      <Link href="/terms">Terms of Service</Link>
+      <Link href="https://www.privateers.io/tou/">Terms of Service</Link>
     </p>
   );
 }
