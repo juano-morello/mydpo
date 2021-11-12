@@ -357,9 +357,6 @@ const addApplication: React.FC = () => {
                                                         <FormControlLabel name={'applicationHostingType'}
                                                                           value={'onpremise'} control={<Radio/>}
                                                                           label="On Premise"/>
-                                                        <FormControlLabel name={'applicationHostingType'}
-                                                                          value={'colocation'} control={<Radio/>}
-                                                                          label="Co-Location"/>
                                                     </RadioGroup>
                                                 </FormControl>
                                             </Box>
@@ -374,8 +371,18 @@ const addApplication: React.FC = () => {
                                                         // @ts-ignore
                                                         onChange={(_, value) => setHostingManagementType(value.props.value)}
                                                     >
-                                                        <MenuItem value={'self'}>Self Hosted</MenuItem>
-                                                        <MenuItem value={'managed'}>Managed Hosting</MenuItem>
+                                                        {hostingType == 'cloud' ? (
+                                                            <>
+                                                                <MenuItem value={'saas'}>SaaS</MenuItem>
+                                                                <MenuItem value={'iaas'}>IaaS</MenuItem>
+                                                                <MenuItem value={'paas'}>PaaS</MenuItem>
+                                                            </>
+                                                        ): (
+                                                            <>
+                                                                <MenuItem value={'selfhosted'}>Self Hosted</MenuItem>
+                                                                <MenuItem value={'colocation'}>Co-Location</MenuItem>
+                                                            </>
+                                                        )}
                                                     </Select>
                                                 </FormControl>
                                             </Box>
