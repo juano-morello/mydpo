@@ -35,10 +35,6 @@ const addApplication: React.FC = () => {
         }
     })
 
-    if (fetching) return <p>Loading...</p>;
-
-    if (error) return <p>{error.message}</p>;
-
     const [appName, setAppName] = useState('')
     const [applicableRegulations, setApplicableRegulations] = useState([])
     const [desc, setDesc] = useState('')
