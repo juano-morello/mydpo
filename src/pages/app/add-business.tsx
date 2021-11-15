@@ -22,25 +22,32 @@ const addBusiness: React.FC = () => {
             .min(2, 'Too short!')
             .max(50, 'Too long!')
             .required('Required!'),
-        companyPhone: Yup.number()
-            .min(2, 'Too short!')
+        companyPhone: Yup.string()
+            .matches(/^[0-9]+$/, "Must be only numbers")
+            .min(5, 'Too short!')
+            .max(20, 'Too long!')
             .required('Required!'),
         companyEmail: Yup.string()
+            .required()
             .min(2, 'Too short!')
             .max(50, 'Too long!')
             .required('Required!'),
 
         businessContactName: Yup.string()
+            .required()
             .min(2, 'Too short!')
             .max(50, 'Too long!')
             .required('Required!'),
         businessContactPosition: Yup.string()
+            .required()
             .min(2, 'Too short!')
             .max(50, 'Too long!')
             .required('Required!'),
-        businessContactPhone: Yup.number()
-            .min(2, 'Too short!')
-            .required('Required!'),
+        businessContactPhone: Yup.string()
+            .required()
+            .matches(/^[0-9]+$/, "Must be only numbers")
+            .min(5, 'Too short!')
+            .max(20, 'Too long!'),
         businessContactEmail: Yup.string()
             .min(2, 'Too short!')
             .max(50, 'Too long!')
@@ -54,8 +61,10 @@ const addBusiness: React.FC = () => {
             .min(2, 'Too short!')
             .max(50, 'Too long!')
             .required('Required!'),
-        technicalContactPhone: Yup.number()
-            .min(2, 'Too short!')
+        technicalContactPhone: Yup.string()
+            .matches(/^[0-9]+$/, "Must be only numbers")
+            .min(5, 'Too short!')
+            .max(20, 'Too long!')
             .required('Required!'),
         technicalContactEmail: Yup.string()
             .min(2, 'Too short!')
@@ -70,8 +79,10 @@ const addBusiness: React.FC = () => {
             .min(2, 'Too short!')
             .max(50, 'Too long!')
             .required('Required!'),
-        privacyLiaisonContactPhone: Yup.number()
-            .min(2, 'Too short!')
+        privacyLiaisonContactPhone: Yup.string()
+            .matches(/^[0-9]+$/, "Must be only numbers")
+            .min(5, 'Too short!')
+            .max(20, 'Too long!')
             .required('Required!'),
         privacyLiaisonContactEmail: Yup.string()
             .min(2, 'Too short!')
@@ -86,8 +97,10 @@ const addBusiness: React.FC = () => {
             .min(2, 'Too short!')
             .max(50, 'Too long!')
             .required('Required!'),
-        hrContactPhone: Yup.number()
-            .min(2, 'Too short!')
+        hrContactPhone: Yup.string()
+            .matches(/^[0-9]+$/, "Must be only numbers")
+            .min(5, 'Too short!')
+            .max(20, 'Too long!')
             .required('Required!'),
         hrContactEmail: Yup.string()
             .min(2, 'Too short!')
@@ -212,7 +225,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'companyName'}
                                             type={'text'}
-                                            label="Company name"
+                                            label="Name"
                                             helperText={errors.companyName}
                                             variant="standard"
                                         />
@@ -222,7 +235,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'companyAddress'}
                                             type={'text'}
-                                            label="Company address"
+                                            label="Address"
                                             helperText={errors.companyAddress}
                                             variant="standard"
                                         />
@@ -232,7 +245,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'companyPhone'}
                                             type={'number'}
-                                            label="Company phone"
+                                            label="Phone"
                                             helperText={errors.companyPhone}
                                             variant="standard"
                                         />
@@ -242,7 +255,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'companyEmail'}
                                             type={'email'}
-                                            label="Company email"
+                                            label="Email"
                                             helperText={errors.companyEmail}
                                             variant="standard"
                                         />
@@ -277,7 +290,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'businessContactName'}
                                             type={'text'}
-                                            label="Business contact name"
+                                            label="Name"
                                             helperText={errors.businessContactName}
                                             variant="standard"
                                         />
@@ -287,7 +300,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'businessContactPosition'}
                                             type={'text'}
-                                            label="Business contact position"
+                                            label="Position"
                                             helperText={errors.businessContactPosition}
                                             variant="standard"
                                         />
@@ -297,7 +310,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'businessContactPhone'}
                                             type={'number'}
-                                            label="Business contact phone"
+                                            label="Phone"
                                             helperText={errors.businessContactPhone}
                                             variant="standard"
                                         />
@@ -307,7 +320,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'businessContactEmail'}
                                             type={'email'}
-                                            label="Business contact email"
+                                            label="Email"
                                             helperText={errors.businessContactEmail}
                                             variant="standard"
                                         />
@@ -334,7 +347,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'technicalContactName'}
                                             type={'text'}
-                                            label="Technical contact name"
+                                            label="Name"
                                             helperText={errors.technicalContactName}
                                             variant="standard"
                                         />
@@ -344,7 +357,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'technicalContactPosition'}
                                             type={'text'}
-                                            label="Technical contact position"
+                                            label="Position"
                                             helperText={errors.technicalContactPosition}
                                             variant="standard"
                                         />
@@ -354,7 +367,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'technicalContactPhone'}
                                             type={'number'}
-                                            label="Technical contact phone"
+                                            label="Phone"
                                             helperText={errors.technicalContactPhone}
                                             variant="standard"
                                         />
@@ -364,7 +377,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'technicalContactEmail'}
                                             type={'email'}
-                                            label="Technical contact email"
+                                            label="Email"
                                             helperText={errors.technicalContactEmail}
                                             variant="standard"
                                         />
@@ -391,7 +404,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'privacyLiaisonContactName'}
                                             type={'text'}
-                                            label="Privacy Liaison contact name"
+                                            label="Name"
                                             helperText={errors.privacyLiaisonContactName}
                                             variant="standard"
                                         />
@@ -401,7 +414,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'privacyLiaisonContactPosition'}
                                             type={'text'}
-                                            label="Privacy Liaison contact position"
+                                            label="Position"
                                             helperText={errors.privacyLiaisonContactPosition}
                                             variant="standard"
                                         />
@@ -411,7 +424,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'privacyLiaisonContactPhone'}
                                             type={'number'}
-                                            label="Privacy Liaison contact phone"
+                                            label="Phone"
                                             helperText={errors.privacyLiaisonContactPhone}
                                             variant="standard"
                                         />
@@ -421,7 +434,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'privacyLiaisonContactEmail'}
                                             type={'email'}
-                                            label="Privacy Liaison contact email"
+                                            label="Email"
                                             helperText={errors.privacyLiaisonContactEmail}
                                             variant="standard"
                                         />
@@ -448,7 +461,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'hrContactName'}
                                             type={'text'}
-                                            label="Human Resources contact name"
+                                            label="Name"
                                             helperText={errors.hrContactName}
                                             variant="standard"
                                         />
@@ -458,7 +471,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'hrContactPosition'}
                                             type={'text'}
-                                            label="Human Resources contact position"
+                                            label="Position"
                                             helperText={errors.hrContactPosition}
                                             variant="standard"
                                         />
@@ -468,7 +481,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'hrContactPhone'}
                                             type={'number'}
-                                            label="Human Resources contact phone"
+                                            label="Phone"
                                             helperText={errors.hrContactPhone}
                                             variant="standard"
                                         />
@@ -478,7 +491,7 @@ const addBusiness: React.FC = () => {
                                             component={TextField}
                                             name={'hrContactEmail'}
                                             type={'email'}
-                                            label="Human Resources contact email"
+                                            label="Email"
                                             helperText={errors.hrContactEmail}
                                             variant="standard"
                                         />

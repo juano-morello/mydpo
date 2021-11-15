@@ -300,7 +300,7 @@ const addApplication: React.FC = () => {
                                             <Autocomplete
                                                 multiple
                                                 id="tags-standard"
-                                                options={['1', '2', '3']}
+                                                options={data?.business?.applications.map(app => app.applicationName) || []}
                                                 getOptionLabel={(option) => option.toString()}
                                                 onChange={(_, value) => {
                                                     // @ts-ignore
@@ -361,27 +361,33 @@ const addApplication: React.FC = () => {
                                             <Box>
                                                 <FormControl fullWidth>
                                                     <InputLabel>Type of Hosting</InputLabel>
-                                                    <Select
-                                                        // value={applicationHostingManagement}
-                                                        label="Type of Hosting"
-                                                        name={'applicationHostingManagement'}
-                                                        defaultValue={''}
-                                                        // @ts-ignore
-                                                        onChange={(_, value) => setHostingManagementType(value.props.value)}
-                                                    >
-                                                        {hostingType == 'cloud' ? (
-                                                            <>
-                                                                <MenuItem value={'saas'}>SaaS</MenuItem>
-                                                                <MenuItem value={'iaas'}>IaaS</MenuItem>
-                                                                <MenuItem value={'paas'}>PaaS</MenuItem>
-                                                            </>
-                                                        ): (
-                                                            <>
-                                                                <MenuItem value={'selfhosted'}>Self Hosted</MenuItem>
-                                                                <MenuItem value={'colocation'}>Co-Location</MenuItem>
-                                                            </>
-                                                        )}
-                                                    </Select>
+                                                    {hostingType == 'cloud' ? (
+                                                        <Select
+                                                            label="Type of Hosting"
+                                                            name={'applicationHostingManagement'}
+                                                            value={hostingManagementType}
+                                                            defaultValue={''}
+                                                            // @ts-ignore
+                                                            onChange={(_, value) => setHostingManagementType(value.props.value)}
+                                                        >
+                                                            <MenuItem value={'saas'}>SaaS</MenuItem>
+                                                            <MenuItem value={'iaas'}>IaaS</MenuItem>
+                                                            <MenuItem value={'paas'}>PaaS</MenuItem>
+                                                        </Select>
+                                                    ) : (
+                                                        <Select
+                                                            label="Type of Hosting"
+                                                            name={'applicationHostingManagement'}
+                                                            value={hostingManagementType}
+                                                            defaultValue={''}
+                                                            // @ts-ignore
+                                                            onChange={(_, value) => setHostingManagementType(value.props.value)}
+                                                        >
+                                                            <MenuItem value={'selfhosted'}>Self Hosted</MenuItem>
+                                                            <MenuItem value={'colocation'}>Co-Location</MenuItem>
+                                                        </Select>
+                                                    )}
+
                                                 </FormControl>
                                             </Box>
                                         </Grid>
@@ -844,7 +850,8 @@ const addApplication: React.FC = () => {
                                                     >
                                                         {data?.business?.applications.map(app => {
                                                             return (
-                                                                <MenuItem value={app.id}>{app.applicationName}</MenuItem>
+                                                                <MenuItem
+                                                                    value={app.id}>{app.applicationName}</MenuItem>
                                                             )
                                                         })}
                                                     </Select>
