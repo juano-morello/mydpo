@@ -2,6 +2,7 @@ import {useRouter} from "next/router";
 import {useState} from "react";
 import {Box, Button, Grid, TextField} from "@mui/material";
 import Link from "next/link";
+import Image from 'next/image'
 
 /**
  * Used on the Login and Sign Up screens to handle authentication. Can be shared between those as Passport.js doesn't differentiate between logging in and signing up.
@@ -44,7 +45,15 @@ export default function AuthenticationForm() {
                 justifyContent="center"
                 style={{ minHeight: '100vh' }}
             >
-                <Grid item xs={3}>
+                <Image
+                    src={'/loginLogo.png'}
+                    alt={'logo image'}
+                    width={'155px'}
+                    height={'155px'}
+                />
+                <Grid
+                sx={{marginTop: '30px'}}
+                >
                     <TextField
                         type={'email'}
                         label="Email Address"
