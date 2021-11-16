@@ -23,7 +23,7 @@ const addBusiness: React.FC = () => {
             .max(50, 'Too long!')
             .required('Required!'),
         companyPhone: Yup.string()
-            .matches(/^[0-9]+$/, "Must be only numbers")
+            .matches(/^[0-9]+$/, "Maximum 10 digits")
             .min(5, 'Too short!')
             .max(20, 'Too long!')
             .required('Required!'),
@@ -45,7 +45,7 @@ const addBusiness: React.FC = () => {
             .required('Required!'),
         businessContactPhone: Yup.string()
             .required()
-            .matches(/^[0-9]+$/, "Must be only numbers")
+            .matches(/^[0-9]+$/, "Maximum 10 digits")
             .min(5, 'Too short!')
             .max(20, 'Too long!'),
         businessContactEmail: Yup.string()
@@ -62,7 +62,7 @@ const addBusiness: React.FC = () => {
             .max(50, 'Too long!')
             .required('Required!'),
         technicalContactPhone: Yup.string()
-            .matches(/^[0-9]+$/, "Must be only numbers")
+            .matches(/^[0-9]+$/, "Maximum 10 digits")
             .min(5, 'Too short!')
             .max(20, 'Too long!')
             .required('Required!'),
@@ -80,7 +80,7 @@ const addBusiness: React.FC = () => {
             .max(50, 'Too long!')
             .required('Required!'),
         privacyLiaisonContactPhone: Yup.string()
-            .matches(/^[0-9]+$/, "Must be only numbers")
+            .matches(/^[0-9]+$/, "Maximum 10 digits")
             .min(5, 'Too short!')
             .max(20, 'Too long!')
             .required('Required!'),
@@ -98,7 +98,7 @@ const addBusiness: React.FC = () => {
             .max(50, 'Too long!')
             .required('Required!'),
         hrContactPhone: Yup.string()
-            .matches(/^[0-9]+$/, "Must be only numbers")
+            .matches(/^[0-9]+$/, "Maximum 10 digits")
             .min(5, 'Too short!')
             .max(20, 'Too long!')
             .required('Required!'),

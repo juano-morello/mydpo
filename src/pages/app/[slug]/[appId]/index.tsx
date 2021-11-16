@@ -240,16 +240,19 @@ const Application: React.FC = () => {
                                     }}
                                 >
                                     <TextField
+                                        disabled
                                         defaultValue={data?.application?.applicationHostingEntity}
                                         label="Hosting Entity"
                                         variant="standard"
                                     />
                                     <TextField
+                                        disabled
                                         defaultValue={data?.application?.applicationOwner}
                                         label="Application Owner"
                                         variant="standard"
                                     />
                                     <TextField
+                                        disabled
                                         defaultValue={data?.application?.technologyOwner}
                                         label="Technology Owner"
                                         variant="standard"
@@ -267,6 +270,7 @@ const Application: React.FC = () => {
                                         <FormControl fullWidth>
                                             <InputLabel>Region Stored</InputLabel>
                                             <Select
+                                                disabled
                                                 label="Region Stored"
                                                 defaultValue={data?.application?.applicationRegionStored}
                                             >
@@ -307,6 +311,7 @@ const Application: React.FC = () => {
                                             <FormControl fullWidth>
                                                 <InputLabel>DR Region Stored</InputLabel>
                                                 <Select
+                                                    disabled
                                                     label="Region Stored"
                                                     defaultValue={data.application.applicationDRRegionStored}
                                                 >
@@ -698,6 +703,7 @@ const Application: React.FC = () => {
                                         <FormControl fullWidth>
                                             <InputLabel>Application is linked to</InputLabel>
                                             <Select
+                                                disabled
                                                 label="Application is linked to"
                                                 name={'applicationId'}
                                                 defaultValue={data?.application?.applicationId}
@@ -709,6 +715,7 @@ const Application: React.FC = () => {
                                         <FormControl fullWidth>
                                             <InputLabel>Type of connection</InputLabel>
                                             <Select
+                                                disabled
                                                 label="Type of connection"
                                                 name={'connectionType'}
                                                 defaultValue={data?.application?.connectionType}
@@ -766,6 +773,7 @@ const Application: React.FC = () => {
                                     </Box>
                                     <Box>
                                         <Field
+                                            disabled
                                             component={TextField}
                                             defaultValue={data?.application?.comments}
                                             label="Comments (optional)"
