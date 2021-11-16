@@ -15,6 +15,7 @@ import {
 import {Field, Form, Formik} from "formik";
 import Layout from "../../../../client/components/Layout";
 import {toast} from "react-hot-toast";
+import {confirmAlert} from "react-confirm-alert";
 
 const Application: React.FC = () => {
     const router = useRouter();
@@ -28,15 +29,12 @@ const Application: React.FC = () => {
     if (fetching) return <p>Loading...</p>;
     if (error) return <p>{error.message}</p>;
 
-    console.log(data)
-
     return (
         <>
             <Layout>
                 <Grid>
                     <Formik
                         initialValues={{
-
                         }}
                         // @ts-ignore
                         onSubmit={async (values) => {
@@ -73,6 +71,18 @@ const Application: React.FC = () => {
                                         style={{marginLeft: '20px'}}
                                     >{data?.application?.applicationName}</h1>
                                 </Box>
+                                <Button
+                                    variant={'contained'}
+                                    color={'secondary'}
+                                    sx={{
+                                        width: '149px',
+                                        height: '44px',
+                                        borderRadius: '50px',
+                                    }}
+                                    onClick={() => router.push(`/app/${data?.application?.businessId}`)}
+                                >
+                                    Back
+                                </Button>
                             </Grid>
                         </Grid>
 
@@ -81,6 +91,10 @@ const Application: React.FC = () => {
                             sx={{
                                 backgroundColor: '#FFFFFF',
                                 borderRadius: '20px',
+                                paddingTop: '1px',
+                                paddingRight: '20px',
+                                paddingBottom: '5px',
+                                paddingLeft: '20px',
                             }}>
                             <Grid
                                 sx={{
@@ -318,11 +332,16 @@ const Application: React.FC = () => {
                         <Grid
                             sx={{
                                 backgroundColor: '#FFFFFF',
+                                borderRadius: '20px',
+                                paddingRight: '20px',
+                                paddingBottom: '5px',
+                                paddingLeft: '20px',
                             }}>
                             <Grid
                                 sx={{
                                     marginTop: '40px',
                                     marginBottom: '30px',
+                                    paddingTop: '3px',
                                     backgroundColor: '#FFFFFF',
                                 }}
                             >

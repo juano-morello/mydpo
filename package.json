@@ -47,6 +47,7 @@
     "postmark": "^2.7.3",
     "raw-body": "^2.4.1",
     "react": "17.0.1",
+    "react-confirm-alert": "^2.7.0",
     "react-dom": "17.0.1",
     "react-hot-toast": "^1.0.2",
     "slug": "^4.0.3",

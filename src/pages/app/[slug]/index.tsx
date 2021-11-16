@@ -128,8 +128,8 @@ function Business() {
                         </Box>
                         <Grid
                             sx={{
-                                marginTop: '70px', display: 'grid',
-                                gap: 10,
+                                marginTop: '20px', display: 'grid',
+                                gap: 2,
                                 gridTemplateColumns: 'repeat(2, 1fr)',
                             }}
                         >

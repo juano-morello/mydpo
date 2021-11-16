@@ -23,6 +23,8 @@ import {
 } from "@mui/material";
 import {toast} from "react-hot-toast";
 import {useGetBusinessQuery} from "../../../client/graphql/getBusiness.generated";
+import { confirmAlert } from "react-confirm-alert";
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const addApplication: React.FC = () => {
     const router = useRouter();
@@ -165,7 +167,7 @@ const addApplication: React.FC = () => {
 
                             addApplication(data)
                                 .then(_ => {
-                                    toast.success('App added successfully!')
+                                    toast.success('App registered successfully!')
                                     router.push(`/app/${slug}`)
                                 }).catch(reason => console.log('ERROR', reason))
 
@@ -207,7 +209,23 @@ const addApplication: React.FC = () => {
                                                 height: '44px',
                                                 borderRadius: '50px',
                                             }}
-                                            onClick={() => router.push(`/app/${data?.business?.id}`)}
+                                            onClick={() => {
+                                                confirmAlert({
+                                                    title: 'Cancel',
+                                                    message: 'Are you sure to do this?',
+                                                    buttons: [
+                                                        {
+                                                            label: 'Yes',
+                                                            onClick: () => router.push(`/app/${data?.business?.id}`)
+                                                        },
+                                                        {
+                                                            label: 'No',
+                                                            // eslint-disable-next-line @typescript-eslint/no-empty-function
+                                                            onClick: () => {}
+                                                        }
+                                                    ]
+                                                });
+                                            }}
                                         >
                                             Cancel
                                         </Button>
@@ -231,6 +249,9 @@ const addApplication: React.FC = () => {
                                     sx={{
                                         backgroundColor: '#FFFFFF',
                                         borderRadius: '20px',
+                                        paddingRight: '20px',
+                                        paddingBottom: '5px',
+                                        paddingLeft: '20px',
                                     }}>
                                     <Grid
                                         sx={{
@@ -470,7 +491,7 @@ const addApplication: React.FC = () => {
                                                     <FormLabel component="legend">DR Hosting</FormLabel>
                                                     <RadioGroup
                                                         // @ts-ignore
-                                                        onChange={(_, value) => setHasDRHosting(Boolean(value))}
+                                                        onChange={(_, value) => setHasDRHosting(value == 'true')}
                                                         row
                                                         name="hasDRHosting">
                                                         <FormControlLabel name={'hasDRHosting'} value={true}
@@ -513,11 +534,16 @@ const addApplication: React.FC = () => {
                                 <Grid
                                     sx={{
                                         backgroundColor: '#FFFFFF',
+                                        borderRadius: '20px',
+                                        paddingRight: '20px',
+                                        paddingBottom: '5px',
+                                        paddingLeft: '20px',
                                     }}>
                                     <Grid
                                         sx={{
                                             marginTop: '40px',
                                             marginBottom: '30px',
+                                            paddingTop: '3px',
                                             backgroundColor: '#FFFFFF',
                                         }}
                                     >
