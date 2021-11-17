@@ -63,24 +63,24 @@ type Business {
   applications(after: ApplicationWhereUniqueInput, before: ApplicationWhereUniqueInput, first: Int, last: Int): [Application!]!
   businessContactEmail: String!
   businessContactName: String!
-  businessContactPhone: Int!
+  businessContactPhone: String!
   businessContactPosition: String!
   companyAddress: String!
   companyEmail: String!
   companyName: String!
-  companyPhone: Int!
+  companyPhone: String!
   hrContactEmail: String!
   hrContactName: String!
-  hrContactPhone: Int!
+  hrContactPhone: String!
   hrContactPosition: String!
   id: String!
   privacyLiaisonContactEmail: String!
   privacyLiaisonContactName: String!
-  privacyLiaisonContactPhone: Int!
+  privacyLiaisonContactPhone: String!
   privacyLiaisonContactPosition: String!
   technicalContactEmail: String!
   technicalContactName: String!
-  technicalContactPhone: Int!
+  technicalContactPhone: String!
   technicalContactPosition: String!
 }
 
@@ -103,7 +103,7 @@ type Module {
 
 type Mutation {
   addApplication(applicableRegulations: [String], applicationDRRegionStored: String!, applicationHostingEntity: String!, applicationHostingManagement: String!, applicationHostingType: String!, applicationId: String!, applicationName: String!, applicationOwner: String!, applicationRegionStored: String!, applicationType: String!, businessId: String!, comments: String!, connectionType: String!, dataRetentionReq: String!, description: String!, encryptedDataTransfer: Boolean!, hasAge: Boolean!, hasBillingHistory: Boolean!, hasBiometricData: Boolean!, hasBirthdate: Boolean!, hasCivilJusticeInfo: Boolean!, hasCriminalInfo: Boolean!, hasDRHosting: Boolean!, hasDriversLicenceNumber: Boolean!, hasEmailAddress: Boolean!, hasEthnicOrigin: Boolean!, hasFinancialInfo: Boolean!, hasGender: Boolean!, hasHealthInfo: Boolean!, hasHomeAddress: Boolean!, hasHouseholdInfo: Boolean!, hasIdNumbers: Boolean!, hasLocation: Boolean!, hasMaritalStatus: Boolean!, hasMedicalInfo: Boolean!, hasMinorInfo: Boolean!, hasMobileNumber: Boolean!, hasNameAndInitials: Boolean!, hasNationality: Boolean!, hasPhysicalCharacteristics: Boolean!, hasReligiousPhilosophicalPoliticalBeliefs: Boolean!, hasSexualBehaviour: Boolean!, hasSocialMedia: Boolean!, hasStudentInfo: Boolean!, hasTelephoneNumber: Boolean!, hasTradeUnionMembership: Boolean!, hasUniqueDeviceId: Boolean!, modules: [String], technologyOwner: String!): Application
-  addBusiness(businessContactEmail: String!, businessContactName: String!, businessContactPhone: Int!, businessContactPosition: String!, companyAddress: String!, companyEmail: String!, companyName: String!, companyPhone: Int!, hrContactEmail: String!, hrContactName: String!, hrContactPhone: Int!, hrContactPosition: String!, privacyLiaisonContactEmail: String!, privacyLiaisonContactName: String!, privacyLiaisonContactPhone: Int!, privacyLiaisonContactPosition: String!, technicalContactEmail: String!, technicalContactName: String!, technicalContactPhone: Int!, technicalContactPosition: String!): Business
+  addBusiness(businessContactEmail: String!, businessContactName: String!, businessContactPhone: String!, businessContactPosition: String!, companyAddress: String!, companyEmail: String!, companyName: String!, companyPhone: String!, hrContactEmail: String!, hrContactName: String!, hrContactPhone: String!, hrContactPosition: String!, privacyLiaisonContactEmail: String!, privacyLiaisonContactName: String!, privacyLiaisonContactPhone: String!, privacyLiaisonContactPosition: String!, technicalContactEmail: String!, technicalContactName: String!, technicalContactPhone: String!, technicalContactPosition: String!): Business
   createConsultancyFirm(name: String!, slug: String): ConsultancyFirm
   inviteToConsultancyFirm(email: String!, projectId: String!): Boolean
   removeUserFromConsultancyFirm(consultancyFirmId: String!, userId: String!): ConsultancyFirm

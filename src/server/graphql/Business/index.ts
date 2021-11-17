@@ -80,27 +80,27 @@ const mutations = extendType({
             args: {
                 companyName: nonNull(stringArg()),
                 companyAddress: nonNull(stringArg()),
-                companyPhone: nonNull(intArg()),
+                companyPhone: nonNull(stringArg()),
                 companyEmail: nonNull(stringArg()),
 
                 businessContactName: nonNull(stringArg()),
                 businessContactPosition: nonNull(stringArg()),
-                businessContactPhone: nonNull(intArg()),
+                businessContactPhone: nonNull(stringArg()),
                 businessContactEmail: nonNull(stringArg()),
 
                 technicalContactName: nonNull(stringArg()),
                 technicalContactPosition: nonNull(stringArg()),
-                technicalContactPhone: nonNull(intArg()),
+                technicalContactPhone: nonNull(stringArg()),
                 technicalContactEmail: nonNull(stringArg()),
 
                 privacyLiaisonContactName: nonNull(stringArg()),
                 privacyLiaisonContactPosition: nonNull(stringArg()),
-                privacyLiaisonContactPhone: nonNull(intArg()),
+                privacyLiaisonContactPhone: nonNull(stringArg()),
                 privacyLiaisonContactEmail: nonNull(stringArg()),
 
                 hrContactName: nonNull(stringArg()),
                 hrContactPosition: nonNull(stringArg()),
-                hrContactPhone: nonNull(intArg()),
+                hrContactPhone: nonNull(stringArg()),
                 hrContactEmail: nonNull(stringArg()),
             },
             // @ts-ignore

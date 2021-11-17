@@ -244,7 +244,7 @@ const addBusiness: React.FC = () => {
                                             error={errors.companyPhone && touched.companyPhone}
                                             component={TextField}
                                             name={'companyPhone'}
-                                            type={'number'}
+                                            type={'text'}
                                             label="Phone"
                                             helperText={errors.companyPhone}
                                             variant="standard"
@@ -310,7 +310,7 @@ const addBusiness: React.FC = () => {
                                             error={errors.businessContactPhone && touched.businessContactPhone}
                                             component={TextField}
                                             name={'businessContactPhone'}
-                                            type={'number'}
+                                            type={'text'}
                                             label="Phone"
                                             helperText={errors.businessContactPhone}
                                             variant="standard"
@@ -367,7 +367,7 @@ const addBusiness: React.FC = () => {
                                             error={errors.technicalContactPhone && touched.technicalContactPhone}
                                             component={TextField}
                                             name={'technicalContactPhone'}
-                                            type={'number'}
+                                            type={'text'}
                                             label="Phone"
                                             helperText={errors.technicalContactPhone}
                                             variant="standard"
@@ -424,7 +424,7 @@ const addBusiness: React.FC = () => {
                                             error={errors.privacyLiaisonContactPhone && touched.privacyLiaisonContactPhone}
                                             component={TextField}
                                             name={'privacyLiaisonContactPhone'}
-                                            type={'number'}
+                                            type={'text'}
                                             label="Phone"
                                             helperText={errors.privacyLiaisonContactPhone}
                                             variant="standard"
@@ -481,7 +481,7 @@ const addBusiness: React.FC = () => {
                                             error={errors.hrContactPhone && touched.hrContactPhone}
                                             component={TextField}
                                             name={'hrContactPhone'}
-                                            type={'number'}
+                                            type={'text'}
                                             label="Phone"
                                             helperText={errors.hrContactPhone}
                                             variant="standard"

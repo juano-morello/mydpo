@@ -34,27 +34,27 @@ model Business {
 
   companyName    String
   companyAddress String
-  companyPhone   Int
+  companyPhone   String
   companyEmail   String
 
   businessContactName     String
   businessContactPosition String
-  businessContactPhone    Int
+  businessContactPhone    String
   businessContactEmail    String
 
   technicalContactName     String
   technicalContactPosition String
-  technicalContactPhone    Int
+  technicalContactPhone    String
   technicalContactEmail    String
 
   privacyLiaisonContactName     String
   privacyLiaisonContactPosition String
-  privacyLiaisonContactPhone    Int
+  privacyLiaisonContactPhone    String
   privacyLiaisonContactEmail    String
 
   hrContactName     String
   hrContactPosition String
-  hrContactPhone    Int
+  hrContactPhone    String
   hrContactEmail    String
 
   ConsultancyFirm   ConsultancyFirm? @relation(fields: [consultancyFirmId], references: [id])
