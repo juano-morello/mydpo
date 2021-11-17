@@ -168,7 +168,20 @@ export default function Dashboard() {
                             marginTop: '20px',
                         }}
                     >
-                        {businessList.map((business) => (
+                        {businessList
+                            .sort((a: Business, b: Business) => {
+                                const nameA = a.companyName
+                                const nameB = b.companyName
+
+                                if (nameA < nameB) {
+                                    return -1
+                                }
+                                if (nameA > nameB) {
+                                    return 1
+                                }
+                                return 0
+                            })
+                            .map((business) => (
                             businessCard(business)
                         ))}
                     </Box>
