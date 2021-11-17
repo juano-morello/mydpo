@@ -25,8 +25,9 @@ interface SendEmailInput {
  * ```
  */
 export const sendEmail = (input: SendEmailInput) => {
-  if (process.env.NODE_ENV === `development`) {
+ /* if (process.env.NODE_ENV === `development`) {
     info(`not sending email in development:`);
+    console.log(`not sending email in development:`);
     console.log();
     console.log(`To: ${input.to}`);
     console.log(`Subject: ${input.subject}`);
@@ -34,7 +35,7 @@ export const sendEmail = (input: SendEmailInput) => {
     console.log(input.text);
     console.log();
     return;
-  }
+  }*/
 
   if (API_TOKEN === "fake" || !FROM_EMAIL) {
     console.error(

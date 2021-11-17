@@ -45,12 +45,6 @@ export default function AuthenticationForm() {
                 justifyContent="center"
                 style={{ minHeight: '100vh' }}
             >
-                <Image
-                    src={'/loginLogo.png'}
-                    alt={'logo image'}
-                    width={'155px'}
-                    height={'155px'}
-                />
                 <Grid
                 sx={{marginTop: '30px'}}
                 >
@@ -76,7 +70,9 @@ export default function AuthenticationForm() {
                     >
                         Sign in
                     </Button>
-                    <Box sx={{ textAlign: 'center', marginTop: '150px'}}><Link href="https://www.privateers.io/privacy-policy/">Privacy policy</Link> & <Link href="https://www.privateers.io/tou/">Terms of Service</Link></Box>
+		    <Box sx={{display: 'block', paddingLeft: '40%', marginTop: '35px' }}> <Image src={'/loginLogo.svg'} alt={'logo image'}  width={'80px'}  height={'80px'}/> </Box>
+
+                    <Box sx={{ textAlign: 'center', marginTop: '90px'}}><Link sx={{textDecoration: 'none', color: '#0072E5' }} href="https://www.privateers.io/privacy-policy/">Privacy policy</Link> & <Link href="https://www.privateers.io/tou/">Terms of Service</Link></Box>
                 </Grid>
             </Grid>
         </form>

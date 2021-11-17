@@ -155,7 +155,7 @@ const addBusiness: React.FC = () => {
                                         marginTop: '40px',
                                         marginBottom: '30px',
                                         display: 'grid',
-                                        gap: 10,
+                                        gap: '10px',
                                         gridTemplateColumns: 'repeat(3, 1fr)',
                                     }}
                                 >
@@ -214,8 +214,8 @@ const addBusiness: React.FC = () => {
                                     </Box>
                                     <Grid
                                         sx={{
-                                            marginTop: '70px', display: 'grid',
-                                            gap: 10,
+                                            display: 'grid',
+                                            gap: '10px',
                                             gridTemplateColumns: 'repeat(2, 1fr)',
                                         }}
                                     >
@@ -248,6 +248,7 @@ const addBusiness: React.FC = () => {
                                             label="Phone"
                                             helperText={errors.companyPhone}
                                             variant="standard"
+					    maxLength={10}
                                         />
                                         <Field
                                             // @ts-ignore
@@ -263,8 +264,8 @@ const addBusiness: React.FC = () => {
                                 </Grid>
                                 <Grid
                                     sx={{
-                                        marginTop: '80px', display: 'grid',
-                                        gap: 10,
+                                        marginTop: '40px', display: 'grid',
+                                        gap: '10px',
                                         gridTemplateColumns: 'repeat(2, 1fr)',
                                     }}
                                 >
@@ -277,7 +278,7 @@ const addBusiness: React.FC = () => {
                                             paddingLeft: '20px',
                                             paddingRight: '20px',
                                             display: 'grid',
-                                            gap: 10,
+                                            gap: '10px',
                                             gridTemplateColumns: 'repeat(1, 1fr)'
                                         }}
                                     >
@@ -334,7 +335,7 @@ const addBusiness: React.FC = () => {
                                             paddingLeft: '20px',
                                             paddingRight: '20px',
                                             display: 'grid',
-                                            gap: 10,
+                                            gap: '10px',
                                             gridTemplateColumns: 'repeat(1, 1fr)'
                                         }}
                                     >
@@ -391,7 +392,7 @@ const addBusiness: React.FC = () => {
                                             paddingLeft: '20px',
                                             paddingRight: '20px',
                                             display: 'grid',
-                                            gap: 10,
+                                            gap: '10px',
                                             gridTemplateColumns: 'repeat(1, 1fr)'
                                         }}
                                     >
@@ -448,7 +449,7 @@ const addBusiness: React.FC = () => {
                                             paddingLeft: '20px',
                                             paddingRight: '20px',
                                             display: 'grid',
-                                            gap: 10,
+                                            gap: '10px',
                                             gridTemplateColumns: 'repeat(1, 1fr)'
                                         }}
                                     >

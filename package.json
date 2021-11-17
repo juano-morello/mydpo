@@ -50,6 +50,7 @@
     "react-confirm-alert": "^2.7.0",
     "react-dom": "17.0.1",
     "react-hot-toast": "^1.0.2",
+    "react-icons": "^4.3.1",
     "slug": "^4.0.3",
     "stripe": "^8.138.0",
     "urql": "^2.0.1",

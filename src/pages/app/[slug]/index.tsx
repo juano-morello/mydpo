@@ -81,7 +81,7 @@ function Business() {
                             marginTop: '40px',
                             marginBottom: '30px',
                             display: 'grid',
-                            gap: 20,
+                            gap: '20px',
                             gridTemplateColumns: 'repeat(2, 1fr)',
                         }}
                     >
@@ -165,8 +165,8 @@ function Business() {
                     </Grid>
                     <Grid
                         sx={{
-                            marginTop: '80px', display: 'grid',
-                            gap: 10,
+                            marginTop: '20px', display: 'grid',
+                            gap: '20px',
                             gridTemplateColumns: 'repeat(2, 1fr)',
                         }}
                     >
@@ -474,7 +474,7 @@ function Business() {
                         marginTop: '40px',
                         marginBottom: '30px',
                         display: 'grid',
-                        gap: 1,
+                        gap: '20px',
                         gridTemplateColumns: 'repeat(3, 1fr)',
                     }}>
                         {

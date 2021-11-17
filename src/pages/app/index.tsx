@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import Layout from "../../client/components/Layout";
 import {Box, Button, Card, CardActions, CardContent, Grid, TextField, Typography} from "@mui/material";
 import {Business} from "../../client/graphql/types.generated";
+import { FaArrowRight, FaBeer, FaCheck,FaCheckCircle } from 'react-icons/fa';
 
 export default function Dashboard() {
     const router = useRouter();
@@ -49,12 +50,17 @@ export default function Dashboard() {
                 width: '380px',
                 borderRadius: '10px',
                 paddingLeft: '10px',
+	        gap: '24px',
+	        position: 'relative'
             }}
             key={business.id}
             >
-                <CardContent>
+                <CardContent sx={{marginBottom: '70px'}}>
+
                     <Typography variant="h5" component="div" sx={{marginBottom: '10px'}}>
-                        {business.companyName}
+                      <span style={{marginTop: '5px', position: 'absolute',backgroundColor: 'white', color: '#0AA64E'  }} >
+	<FaCheckCircle sx={{fontSize: '25px', left:'8.33%', top: '7.33%' , position: 'absolute' }}/></span> 
+			<span style={{marginLeft: '40px', colo:'#4D4D4D', fontSize: '1.0em'}}>  {business.companyName} </span>
                     </Typography>
 
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -85,7 +91,7 @@ export default function Dashboard() {
                         </Typography>
                     </Box>
                 </CardContent>
-                <CardActions>
+                <CardActions sx={{bottom: '0%', position: 'absolute'}}>
                     <Button
                         variant="outlined"
                         color="success"
@@ -97,7 +103,7 @@ export default function Dashboard() {
                             borderRadius: '20px'
                         }}
                     >
-                        View
+                        <span>View</span><span style={{ marginLeft: '10px',marginTop: '4px', fontSize: '13px'}}><FaArrowRight sx={{color:'#0AA64E'}}/></span>
                     </Button>
                 </CardActions>
             </Card>
@@ -113,7 +119,7 @@ export default function Dashboard() {
                     <Box
                         sx={{
                             display: 'grid',
-                            gap: 24,
+                            gap: '24px',
                             gridTemplateColumns: 'repeat(2, 1fr)',
                         }}
                     >
@@ -126,10 +132,11 @@ export default function Dashboard() {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
+                                gap: '24px'
                             }}
                         >
                             <h2
-                            style={{marginLeft: '20px'}}
+                            style={{marginLeft: '20px',color:'#4D4D4D', fontSize:'1.4em'}}
                             >Companies</h2>
                         </Box>
 
@@ -156,7 +163,7 @@ export default function Dashboard() {
                     <Box
                         sx={{
                             display: 'grid',
-                            gap: 1,
+                            gap: '24px',
                             gridTemplateColumns: 'repeat(3, 1fr)',
                             marginTop: '20px',
                         }}
