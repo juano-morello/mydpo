@@ -12,3 +12,5 @@ services:
       POSTGRES_DB: mydpo
     # Make sure log colors show up correctly
     tty: true
+    volumes:
+      - ./database:/var/lib/postgresql/data
