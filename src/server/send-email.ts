@@ -34,7 +34,7 @@ export const sendEmail = (input: SendEmailInput) => {
         console.log();
         console.log(input.text);
         console.log();
-        return;
+        // return;
     }
 
     if (API_TOKEN === "fake" || !FROM_EMAIL) {
