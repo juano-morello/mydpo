@@ -8515,10 +8515,10 @@ pascalcase@^0.1.1:
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
   integrity sha1-s2PlXoAGym/iF4TS2yK9FdeRfxQ=
 
-passport-magic-login@1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/passport-magic-login/-/passport-magic-login-1.0.7.tgz#71663952d62936ae0c674acf93da2d9b46541868"
-  integrity sha512-oPltyELjA2cNPnJFfZKf6pZvfb14YNbi/l6PalHUCnCTm8WRT5T51RpOCmAh3dXCsfPdBNp7DaZSE7/F5gOhJA==
+passport-magic-login@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/passport-magic-login/-/passport-magic-login-1.2.0.tgz#6aeb2628f6783c4132758c18c8a59ea52d46cd55"
+  integrity sha512-KsEfl+WXYi33+wqF56svazDqiwULohCDMAeqw4xlBwCPbYYhF9+d2hRwimB5nX0kUB2/c+SItqp2CZCE63uVDA==
   dependencies:
     "@types/node" "^14.14.20"
     jsonwebtoken "^8.5.1"
