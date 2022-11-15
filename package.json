@@ -39,7 +39,7 @@
     "nexus": "^1.0.0",
     "nexus-plugin-prisma": "^0.32.0",
     "passport": "^0.4.1",
-    "passport-magic-login": "1.0.7",
+    "passport-magic-login": "1.2.1",
     "postmark": "^2.7.3",
     "raw-body": "^2.4.1",
     "react": "17.0.1",
